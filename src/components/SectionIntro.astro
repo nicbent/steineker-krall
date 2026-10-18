@@ -1,0 +1,18 @@
+---
+import AnchorNav from './AnchorNav.astro'
+
+interface Props {
+  heading?: string
+  lead?: string
+  anchors?: {id: string; label: string}[]
+}
+
+const {heading, lead, anchors} = Astro.props
+---
+
+<div class="mx-auto max-w-3xl text-center">
+  {heading && <h2 data-reveal>{heading}</h2>}
+  {lead && <p class="mt-4 text-lead" data-reveal>{lead}</p>}
+  <AnchorNav anchors={anchors} class="mt-10" />
+  <slot />
+</div>

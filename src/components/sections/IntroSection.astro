@@ -1,0 +1,26 @@
+---
+import type {Link} from '../../lib/content'
+import AnchorNav from '../AnchorNav.astro'
+import ArrowLink from '../ArrowLink.astro'
+
+interface Props {
+  heading?: string
+  lead?: string
+  link?: Link
+  theme?: 'white' | 'light'
+  anchors?: {id: string; label: string}[]
+}
+
+const {heading, lead, link, theme = 'white', anchors} = Astro.props
+---
+
+<section data-tone="light" class:list={[theme === 'light' ? 'theme-light' : 'theme-white', 'section-y']}>
+  <div class="container">
+    <div class="mx-auto max-w-4xl text-center">
+      {heading && <h1 data-reveal>{heading}</h1>}
+      {lead && <p class="mx-auto mt-5 max-w-3xl text-lead" data-reveal>{lead}</p>}
+      <ArrowLink link={link} />
+      <AnchorNav anchors={anchors} class="mt-10" />
+    </div>
+  </div>
+</section>

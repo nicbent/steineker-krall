@@ -1,0 +1,22 @@
+---
+import {PortableText} from 'astro-portabletext'
+import PtLink from '../PtLink.astro'
+
+interface Props {
+  heading?: string
+  body?: any[]
+}
+
+const {heading, body = []} = Astro.props
+---
+
+<section data-tone="light" class="theme-white pt-32 pb-20 lg:pt-[12vw]">
+  <div class="container">
+    <div class="mx-auto max-w-[46rem]">
+    {heading && <h2 class="mb-8" data-reveal>{heading}</h2>}
+    <div class="rich-text" data-reveal>
+      <PortableText value={body} components={{mark: {link: PtLink}}} />
+    </div>
+    </div>
+  </div>
+</section>

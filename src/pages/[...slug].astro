@@ -1,0 +1,86 @@
+---
+import AnchorNav from '../components/AnchorNav.astro'
+import Hero from '../components/Hero.astro'
+import BannerSection from '../components/sections/BannerSection.astro'
+import CanvasSection from '../components/sections/CanvasSection.astro'
+import GallerySection from '../components/sections/GallerySection.astro'
+import IntroSection from '../components/sections/IntroSection.astro'
+import RichTextSection from '../components/sections/RichTextSection.astro'
+import Layout from '../layouts/Layout.astro'
+import {getContent} from '../lib/content'
+
+export async function getStaticPaths() {
+  const {pages} = await getContent()
+  return pages.map((page) => ({params: {slug: page.slug === 'home' ? undefined : page.slug}}))
+}
+
+// Die Seite hier laden statt über props: Astro merkt sich getStaticPaths im Dev-Server,
+// Änderungen aus dem Studio kämen sonst erst nach einem Neustart an
+const {settings, pages} = await getContent()
+const page = pages.find((candidate) => candidate.slug === (Astro.params.slug ?? 'home'))
+if (!page) return new Response(null, {status: 404})
+
+const components: Record<string, any> = {
+  introSection: IntroSection,
+  bannerSection: BannerSection,
+  canvasSection: CanvasSection,
+  gallerySection: GallerySection,
+  richTextSection: RichTextSection,
+}
+
+const sections = page.sections ?? []
+
+// Sprungnavigation: Ziele sind alle Abschnitte mit „Name in der Sprungnavigation“. Die Navigation steht unter
+// dem Intro des ersten Abschnitts; kann dieser sie nicht anzeigen, direkt unter dem Hero.
+const slugify = (text: string) =>
+  text
+    .toLowerCase()
+    .replace(/ä/g, 'ae')
+    .replace(/ö/g, 'oe')
+    .replace(/ü/g, 'ue')
+    .replace(/ß/g, 'ss')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+const anchorIds = new Map<string, string>()
+for (const section of sections) {
+  if (!section.anchorLabel) continue
+  const base = slugify(section.anchorLabel) || 'abschnitt'
+  const taken = new Set(anchorIds.values())
+  let id = base
+  for (let n = 2; taken.has(id); n++) id = `${base}-${n}`
+  anchorIds.set(section._key, id)
+}
+const anchors = page.anchorNav
+  ? sections
+      .filter((section) => anchorIds.has(section._key))
+      .map((section) => ({id: anchorIds.get(section._key)!, label: section.anchorLabel as string}))
+  : []
+const navHosts = ['introSection', 'canvasSection']
+const navInFirstSection = navHosts.includes(sections[0]?._type)
+const hasHero = Boolean(page.hero?.image) && page.hero?.size !== 'none'
+// Helligkeit der Fläche unter dem Header beim Aufruf, damit die Farbe schon vor dem Skript stimmt
+const headerTone = hasHero || sections[0]?._type === 'bannerSection' ? 'dark' : 'light'
+const isHome = page.slug === 'home'
+// Das Intro trägt die H1 der Seite
+const hasIntro = sections.some((section) => section._type === 'introSection')
+---
+
+<Layout settings={settings} title={isHome ? undefined : page.title} description={page.description} headerTone={headerTone} anchors={anchors}>
+  {hasHero && <Hero hero={page.hero!} titleTag={hasIntro ? 'p' : 'h1'} />}
+  {!hasIntro && !(hasHero && page.hero?.title) && <h1 class="sr-only">{isHome ? settings.title : page.title}</h1>}
+  {
+    sections.map((section, i) => {
+      const Component = components[section._type]
+      if (!Component) return null
+      return (
+        <div
+          id={anchorIds.get(section._key)}
+          class:list={[section._type === 'gallerySection' ? 'scroll-mt-32' : 'scroll-mt-10']}
+        >
+          {i === 0 && !navInFirstSection && <AnchorNav anchors={anchors} class="container pt-16" />}
+          <Component {...section} settings={settings} anchors={i === 0 ? anchors : undefined} />
+        </div>
+      )
+    })
+  }
+</Layout>

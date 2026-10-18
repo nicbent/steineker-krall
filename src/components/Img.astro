@@ -1,0 +1,37 @@
+---
+import type {SiteImage} from '../lib/content'
+
+interface Props {
+  image?: SiteImage
+  sizes?: string
+  class?: string
+  eager?: boolean
+}
+
+const {image, sizes = '100vw', class: className, eager = false} = Astro.props
+
+const variant = (width: number) =>
+  image?.kind === 'sanity' ? `${image.url}?w=${width}&auto=format&q=80` : `${image?.url}?format=${width}w`
+
+const steps = image?.kind === 'sanity' ? [480, 800, 1200, 1600, 2400] : [300, 500, 750, 1000, 1500, 2500]
+const widths = steps.filter((width, i) => i === 0 || steps[i - 1] < (image?.width ?? 0))
+const responsive = image?.kind !== 'plain'
+---
+
+{
+  image && (
+    <img
+      src={responsive ? variant(widths[Math.min(2, widths.length - 1)]) : image.url}
+      srcset={responsive ? widths.map((width) => `${variant(width)} ${width}w`).join(', ') : undefined}
+      sizes={responsive ? sizes : undefined}
+      width={image.width}
+      height={image.height}
+      alt={image.alt}
+      loading={eager ? 'eager' : 'lazy'}
+      fetchpriority={eager ? 'high' : undefined}
+      decoding="async"
+      class={className}
+      style={image.position ? `object-position: ${image.position}` : undefined}
+    />
+  )
+}

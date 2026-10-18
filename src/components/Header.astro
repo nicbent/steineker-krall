@@ -1,0 +1,245 @@
+---
+import type {Settings} from '../lib/content'
+import SkLogo from './SkLogo.astro'
+
+interface Props {
+  settings: Settings
+  /** Helligkeit der Fläche unter dem Header beim Seitenaufruf; beim Scrollen übernimmt das Skript */
+  tone: 'light' | 'dark'
+  /** Sprungziele der Seite; ab zwei Einträgen erscheint beim Scrollen eine zweite Zeile im Header */
+  anchors?: {id: string; label: string}[]
+}
+
+const {settings, tone, anchors = []} = Astro.props
+const current = Astro.url.pathname.replace(/\/$/, '') || '/'
+const links = settings.navigation ?? []
+---
+
+<!--
+  Fixiert und transparent. Logo und Menü färben sich nach der Fläche darunter: Jeder Abschnitt trägt
+  data-tone="light" oder "dark", das Skript prüft beim Scrollen, welcher gerade hinter dem Header liegt.
+-->
+<header class="fixed inset-x-0 top-0 z-40" data-header data-tone={tone}>
+  <div class="flex items-center justify-between px-4 py-3 lg:px-[3vw]" data-header-row>
+    <SkLogo class="relative z-50" />
+
+    <nav class="hidden lg:block" aria-label="Hauptnavigation">
+      <ul class="flex">
+        {
+          links.map((link) => {
+            const active = current === link.href
+            return (
+              <li>
+                <a
+                  href={link.href}
+                  aria-current={active ? 'page' : undefined}
+                  class:list={[
+                    'nav-link flex h-12 items-center px-6 font-bold tracking-wide uppercase',
+                    active && 'is-active',
+                  ]}
+                >
+                  {link.label}
+                </a>
+              </li>
+            )
+          })
+        }
+      </ul>
+    </nav>
+
+    <button
+      type="button"
+      class="relative z-50 flex h-12 w-12 flex-col items-center justify-center gap-2 lg:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Menü öffnen"
+      data-menu-toggle
+    >
+      <span class="h-px w-8 bg-current transition-transform"></span>
+      <span class="h-px w-8 bg-current transition-transform"></span>
+    </button>
+  </div>
+
+ {
+    anchors.length > 1 && (
+      <nav class="subnav" aria-label="Bereiche dieser Seite (fixiert)" data-subnav>
+        <ul class="flex gap-x-8 overflow-x-auto px-4 lg:justify-center lg:px-[3vw]">
+          {anchors.map((anchor) => (
+            <li class="shrink-0">
+              <a href={`#${anchor.id}`} class="subnav-link block py-3 text-small" data-target={anchor.id}>
+                {anchor.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )
+  }
+
+  <nav id="mobile-menu" class="fixed inset-0 z-40 hidden bg-white text-ink lg:hidden" aria-label="Hauptnavigation" data-menu>
+    <ul class="flex h-full flex-col items-center justify-center gap-6">
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href} class="nav-link text-h2 font-bold tracking-wide uppercase" aria-current={current === link.href ? 'page' : undefined}>
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]')
+  const toggle = header?.querySelector<HTMLButtonElement>('[data-menu-toggle]')
+  const menu = header?.querySelector<HTMLElement>('[data-menu]')
+
+  function setOpen(open: boolean) {
+    if (!header || !toggle || !menu) return
+    menu.classList.toggle('hidden', !open)
+    header.classList.toggle('menu-open', open)
+    toggle.setAttribute('aria-expanded', String(open))
+    toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen')
+    document.documentElement.classList.toggle('overflow-hidden', open)
+  }
+
+  toggle?.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'))
+  document.addEventListener('keydown', (event) => event.key === 'Escape' && setOpen(false))
+  document.addEventListener('contact-panel:open', () => setOpen(false))
+  window.matchMedia('(min-width: 64rem)').addEventListener('change', () => setOpen(false))
+
+  // Farbe nach der Fläche in Höhe der Header-Mitte; ohne markierten Abschnitt gilt hell
+  if (header) {
+    let ticking = false
+    const row = header.querySelector<HTMLElement>('[data-header-row]')!
+    const subnav = header.querySelector<HTMLElement>('[data-subnav]')
+    const inlineNav = document.querySelector<HTMLElement>('[data-anchor-nav]')
+    const subLinks = [...(subnav?.querySelectorAll<HTMLAnchorElement>('[data-target]') ?? [])]
+
+    const update = () => {
+      // Zweite Zeile, sobald die Sprungnavigation unter dem Intro hinter den Header gescrollt ist
+      const showSubnav = Boolean(subnav && inlineNav && inlineNav.getBoundingClientRect().bottom < row.offsetHeight)
+      header.classList.toggle('has-subnav', showSubnav)
+
+      // Auf der hellen Fläche der zweiten Zeile ist der Header immer dunkel beschriftet
+      const y = row.offsetHeight / 2
+      let tone = 'light'
+      if (!showSubnav) {
+        for (const area of document.querySelectorAll<HTMLElement>('[data-tone]:not([data-header])')) {
+          const rect = area.getBoundingClientRect()
+          if (rect.top <= y && rect.bottom > y) tone = area.dataset.tone ?? tone
+        }
+      }
+      header.dataset.tone = tone
+
+      // Aktiver Abschnitt: der letzte, dessen Anfang den Header (plus etwas Luft) erreicht hat
+      if (showSubnav) {
+        const line = header.offsetHeight + 80
+        let active: string | undefined
+        for (const link of subLinks) {
+          const target = document.getElementById(link.dataset.target!)
+          if (target && target.getBoundingClientRect().top <= line) active = link.dataset.target
+        }
+        for (const link of subLinks) {
+          const on = link.dataset.target === active
+          link.toggleAttribute('aria-current', on)
+          if (on) link.scrollIntoView({block: 'nearest', inline: 'nearest'})
+        }
+      }
+      ticking = false
+    }
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          ticking = true
+          requestAnimationFrame(update)
+        }
+      },
+      {passive: true},
+    )
+    window.addEventListener('resize', update)
+    update()
+  }
+</script>
+
+<style>
+  [data-header] {
+    color: var(--color-ink);
+    transition: color 0.3s ease;
+  }
+  [data-header][data-tone='dark'] {
+    color: var(--color-white);
+  }
+
+  /* Zweite Zeile mit der Sprungnavigation; Header und Zeile bekommen dann eine gemeinsame helle Fläche */
+  .subnav {
+    display: none;
+  }
+  .has-subnav .subnav {
+    display: block;
+    border-top: 1px solid rgb(29 27 27 / 0.08);
+    animation: subnav-in 0.3s ease;
+  }
+  /* Nicht bei offenem Menü: backdrop-filter würde das fixierte Vollbild-Menü an den Header binden */
+  .has-subnav:not(.menu-open) {
+    background: rgb(255 255 255 / 0.88);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 1px 0 rgb(29 27 27 / 0.08);
+  }
+  .subnav ul {
+    scrollbar-width: none;
+  }
+  .subnav-link {
+    text-decoration: underline 1px transparent;
+    text-underline-offset: 5px;
+    transition: text-decoration-color 0.2s ease;
+  }
+  .subnav-link:hover,
+  .subnav-link[aria-current] {
+    text-decoration-color: currentColor;
+  }
+  @keyframes subnav-in {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .has-subnav .subnav {
+      animation: none;
+    }
+  }
+  /* Aktiver Menüpunkt dauerhaft unterstrichen, die übrigen beim Hover */
+  .nav-link {
+    text-decoration: underline 2px transparent;
+    text-underline-offset: 6px;
+    transition: text-decoration-color 0.2s ease;
+  }
+  .nav-link:hover,
+  .nav-link.is-active,
+  .nav-link[aria-current='page'] {
+    text-decoration-color: currentColor;
+  }
+  /* Logo: kleiner auf dem Handy, damit der volle Schriftzug neben den Menü-Knopf passt */
+  [data-header] :global(.sk-logo) {
+    --h: 30px;
+  }
+  @media (min-width: 64rem) {
+    [data-header] :global(.sk-logo) {
+      --h: 40px;
+    }
+  }
+  .menu-open :global(.sk-logo),
+  .menu-open [data-menu-toggle] {
+    color: var(--color-ink);
+  }
+  .menu-open [data-menu-toggle] span:first-child {
+    transform: translateY(4.5px) rotate(45deg);
+  }
+  .menu-open [data-menu-toggle] span:last-child {
+    transform: translateY(-4.5px) rotate(-45deg);
+  }
+</style>

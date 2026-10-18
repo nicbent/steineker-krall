@@ -1,0 +1,135 @@
+---
+import 'vanilla-cookieconsent/dist/cookieconsent.css'
+import {consentDefaults} from '../lib/consentDefaults'
+import type {ConsentSettings} from '../lib/content'
+
+interface Props {
+  consent?: ConsentSettings
+}
+
+const {consent} = Astro.props
+// Der Banner erscheint nur, wenn er aktiviert ist und ein zustimmungspflichtiger Dienst eingetragen ist
+const active = Boolean(consent?.enabled && consent?.analyticsId)
+const texts = Object.fromEntries(
+  Object.entries(consentDefaults).map(([key, fallback]) => [key, (consent?.[key] as string | undefined)?.trim() || fallback]),
+)
+const config = {
+  position: consent?.position ?? 'bottom left',
+  // Analytics nur auf der veröffentlichten Website, nie beim lokalen Entwickeln
+  analyticsId: import.meta.env.PROD ? consent?.analyticsId : null,
+  privacyUrl: '/datenschutzerklaerung',
+  texts,
+}
+---
+
+{active && <div id="cookie-consent-config" data-config={JSON.stringify(config)} hidden />}
+
+<script>
+  import {acceptedCategory, run} from 'vanilla-cookieconsent'
+
+  type Gtag = (...args: unknown[]) => void
+  const raw = document.getElementById('cookie-consent-config')?.dataset.config
+
+  // Ohne Konfiguration ist der Banner im Studio aus oder kein Dienst eingetragen
+  if (raw) {
+    const config = JSON.parse(raw) as {position: string; analyticsId: string | null; privacyUrl: string; texts: Record<string, string>}
+    const t = config.texts
+    const scope = window as typeof window & {dataLayer?: unknown[]; gtag?: Gtag}
+    let analyticsLoaded = false
+
+    // Googles Skript wird erst nach Zustimmung angefragt; vorher geht nichts an Google
+    const applyAnalytics = () => {
+      if (!config.analyticsId) return
+      const granted = acceptedCategory('analytics')
+      if (granted && !analyticsLoaded) {
+        analyticsLoaded = true
+        scope.dataLayer = scope.dataLayer ?? []
+        scope.gtag = function () {
+          // gtag.js erwartet das arguments-Objekt selbst
+          // eslint-disable-next-line prefer-rest-params
+          scope.dataLayer!.push(arguments)
+        }
+        scope.gtag('consent', 'default', {analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied'})
+        scope.gtag('js', new Date())
+        scope.gtag('config', config.analyticsId, {anonymize_ip: true})
+        const script = document.createElement('script')
+        script.async = true
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(config.analyticsId)}`
+        document.head.append(script)
+      } else if (analyticsLoaded) {
+        scope.gtag?.('consent', 'update', {analytics_storage: granted ? 'granted' : 'denied'})
+      }
+    }
+
+    const link = document.createElement('a')
+    link.href = config.privacyUrl
+    link.textContent = t.privacyLabel
+
+    run({
+      guiOptions: {
+        consentModal: {layout: 'box', position: config.position as 'bottom left', equalWeightButtons: true, flipButtons: false},
+        preferencesModal: {layout: 'box', equalWeightButtons: true, flipButtons: false},
+      },
+      categories: {
+        necessary: {enabled: true, readOnly: true},
+        // Beim Widerruf werden auch die Cookies von Google Analytics gelöscht
+        analytics: {autoClear: {cookies: [{name: /^_ga/}, {name: '_gid'}]}},
+      },
+      onConsent: applyAnalytics,
+      onChange: applyAnalytics,
+      language: {
+        default: 'de',
+        translations: {
+          de: {
+            consentModal: {
+              title: t.title,
+              description: t.description,
+              acceptAllBtn: t.acceptAllLabel,
+              acceptNecessaryBtn: t.acceptNecessaryLabel,
+              showPreferencesBtn: t.settingsLabel,
+              footer: link.outerHTML,
+            },
+            preferencesModal: {
+              title: t.title,
+              acceptAllBtn: t.acceptAllLabel,
+              acceptNecessaryBtn: t.acceptNecessaryLabel,
+              savePreferencesBtn: t.saveLabel,
+              closeIconLabel: t.closeLabel,
+              sections: [
+                {title: t.necessaryTitle, description: t.necessaryText, linkedCategory: 'necessary'},
+                {title: t.analyticsTitle, description: t.analyticsText, linkedCategory: 'analytics'},
+              ],
+            },
+          },
+        },
+      },
+    })
+  }
+</script>
+
+<style is:global>
+  /* Banner im Stil der Website: Nunito, Schwarz/Weiß, eckige Knöpfe */
+  #cc-main {
+    --cc-font-family: var(--font-sans);
+    --cc-modal-border-radius: 0;
+    --cc-btn-border-radius: 0;
+    --cc-bg: #fff;
+    --cc-primary-color: var(--color-ink);
+    --cc-secondary-color: var(--color-ink);
+    --cc-link-color: var(--color-ink);
+    --cc-btn-primary-bg: var(--color-ink);
+    --cc-btn-primary-color: #fff;
+    --cc-btn-primary-border-color: var(--color-ink);
+    --cc-btn-primary-hover-bg: #000;
+    --cc-btn-primary-hover-color: #fff;
+    --cc-btn-primary-hover-border-color: #000;
+    --cc-btn-secondary-bg: #fff;
+    --cc-btn-secondary-color: var(--color-ink);
+    --cc-btn-secondary-border-color: var(--color-ink);
+    --cc-btn-secondary-hover-bg: var(--color-mist);
+    --cc-btn-secondary-hover-color: var(--color-ink);
+    --cc-btn-secondary-hover-border-color: var(--color-ink);
+    --cc-toggle-on-bg: var(--color-ink);
+    --cc-separator-border-color: rgb(29 27 27 / 0.12);
+  }
+</style>

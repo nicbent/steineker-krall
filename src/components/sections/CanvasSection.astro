@@ -1,0 +1,385 @@
+---
+import {PortableText} from 'astro-portabletext'
+import PtLink from '../PtLink.astro'
+import {PARALLAX_STEP, clampArea, rowFactor, usedRows} from '../../lib/canvas'
+import type {Link, SiteImage} from '../../lib/content'
+import ArrowLink from '../ArrowLink.astro'
+import CanvasBlock from '../CanvasBlock.astro'
+import Img from '../Img.astro'
+import SectionIntro from '../SectionIntro.astro'
+
+interface Element {
+  _key: string
+  _type: 'canvasImage' | 'canvasVideo' | 'canvasText'
+  video?: string
+  poster?: SiteImage
+  label?: string
+  column?: number
+  row?: number
+  width?: number
+  height?: number
+  mobile?: 'auto' | 'full' | 'hidden'
+  image?: SiteImage
+  heading?: string
+  lead?: string
+  link?: Link
+  align?: 'center' | 'left'
+  background?: 'none' | 'white' | 'dark'
+  body?: any[]
+  parallax?: number
+}
+
+interface Props {
+  heading?: string
+  lead?: string
+  anchors?: {id: string; label: string}[]
+  rowHeight?: string
+  theme?: 'white' | 'light'
+  mobileOrder?: 'reading' | 'grouped' | 'custom'
+  mobileSequence?: string[]
+  elements?: Element[]
+}
+
+const {heading, lead, anchors, rowHeight, theme = 'white', mobileOrder = 'reading', mobileSequence = [], elements = []} = Astro.props
+const factor = rowFactor(rowHeight)
+
+// Vorne liegt, was in der Liste weiter oben steht. Auf dem Handy entweder in Lesereihenfolge (Zeile, dann Spalte)
+// der Desktop-Anordnung oder gruppiert: erste Hälfte der Bilder, dann die Texte, dann die übrigen Bilder.
+const sorted = elements
+  .map((element, index) => ({
+    ...element,
+    area: clampArea({column: element.column ?? 1, row: element.row ?? 1, width: element.width ?? 3, height: element.height ?? 3}),
+    z: elements.length - index,
+  }))
+  .filter((element) => (element._type === 'canvasImage' ? element.image : element._type === 'canvasVideo' ? element.video : true))
+  .sort((a, b) => a.area.row - b.area.row || a.area.column - b.area.column)
+// Bilder und Videos zählen auf dem Handy gleich (zu zweit nebeneinander)
+const visibleImages = sorted.filter((item) => item._type !== 'canvasText' && item.mobile !== 'hidden')
+const imagesAbove = new Set(visibleImages.slice(0, Math.ceil(visibleImages.length / 2)))
+// Eigene Reihenfolge: Position in der gespeicherten Liste; nicht aufgeführte Elemente in Lesereihenfolge dahinter
+const customPosition = (key: string, readingIndex: number) => {
+  const i = mobileSequence.indexOf(key)
+  return i >= 0 ? i : mobileSequence.length + readingIndex
+}
+const items = sorted.map((item, index) => ({
+  ...item,
+  mobileOrder:
+    mobileOrder === 'custom'
+      ? customPosition(item._key, index)
+      : mobileOrder !== 'grouped'
+        ? 0
+        : item._type === 'canvasText'
+          ? 1
+          : imagesAbove.has(item)
+            ? 0
+            : 2,
+  mobileFull: item._type === 'canvasText' || item.mobile === 'full',
+  lone: false,
+}))
+
+// Bilder ohne Partner in ihrer Handy-Reihe bekommen automatisch die volle Breite, damit keine Lücke entsteht
+let pending: (typeof items)[number] | undefined
+for (const item of [...items].filter((i) => i.mobile !== 'hidden').sort((a, b) => a.mobileOrder - b.mobileOrder)) {
+  if (item.mobileFull) {
+    if (pending) pending.lone = true
+    pending = undefined
+  } else if (pending) {
+    pending = undefined
+  } else {
+    pending = item
+  }
+}
+if (pending) pending.lone = true
+
+const rows = usedRows(items.map((item) => item.area))
+---
+
+<section data-tone="light" class:list={[theme === 'light' ? 'theme-light' : 'theme-white', 'section-y']}>
+  <div class="container">
+    {
+      (heading || lead) && (
+        <div class="mb-12 lg:mb-16">
+          <SectionIntro heading={heading} lead={lead} anchors={anchors} />
+        </div>
+      )
+    }
+    <div class="canvas-frame">
+    <div class="canvas" style={`--rows: ${rows}; --row-factor: ${factor}`}>
+      {
+        // Unsichtbare Abstandshalter: geben jeder Zeile ihre Mindesthöhe (nur Desktop)
+        Array.from({length: rows}, (_, i) => <span class="canvas-spacer" style={`grid-row: ${i + 1}`} aria-hidden="true" />)
+      }
+      {
+        items.map((item) => {
+          const {area} = item
+          const full = item.mobileFull && item.mobile !== 'hidden'
+          const style = [
+            `--area: ${area.row} / ${area.column} / span ${area.height} / span ${area.width}`,
+            `--shape: ${area.width / (area.height * factor)}`,
+            `z-index: ${item.z}`,
+            `--mobile-order: ${item.mobileOrder}`,
+          ].join('; ')
+          const classes = [
+            'element',
+            full && 'element--full',
+            item.lone && 'element--lone',
+            item.mobile === 'hidden' && 'element--hidden-mobile',
+          ]
+
+          if (item._type === 'canvasVideo') {
+            return (
+              <div
+                class:list={[...classes, 'element--image', 'element--video']}
+                style={style}
+                data-reveal="image"
+                data-parallax={item.parallax ? item.parallax * PARALLAX_STEP : undefined}
+              >
+                <video
+                  class="h-full w-full object-cover"
+                  data-src={item.video}
+                  poster={item.poster?.url}
+                  muted
+                  loop
+                  playsinline
+                  preload="none"
+                  aria-label={item.label || undefined}
+                  aria-hidden={item.label ? undefined : 'true'}
+                  data-canvas-video
+                />
+              </div>
+            )
+          }
+          return item._type === 'canvasImage' ? (
+            <div
+              class:list={[...classes, 'element--image']}
+              style={style}
+              data-reveal="image"
+              data-parallax={item.parallax ? item.parallax * PARALLAX_STEP : undefined}
+            >
+              <Img
+                image={item.image!}
+                sizes={`(min-width: 64rem) ${Math.round((area.width / 12) * 100)}vw, ${full || item.lone ? 100 : 50}vw`}
+                class="h-full w-full object-cover"
+              />
+            </div>
+          ) : (
+            <div
+              class:list={[
+                ...classes,
+                'element--text',
+                `element--${item.align ?? 'center'}`,
+                item.background === 'white' && 'theme-white element--boxed',
+                item.background === 'dark' && 'theme-dark element--boxed',
+              ]}
+              style={style}
+              data-parallax={item.parallax ? item.parallax * PARALLAX_STEP : undefined}
+            >
+              {
+                item.body?.length ? (
+                  <div class="canvas-rich">
+                    <PortableText value={item.body} components={{block: CanvasBlock, mark: {link: PtLink}}} />
+                  </div>
+                ) : null
+              }
+              <div class="canvas-link">
+                <ArrowLink link={item.link} />
+              </div>
+            </div>
+          )
+        })
+      }
+    </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Handy: Elemente untereinander in Lesereihenfolge; Bilder zu zweit, Texte über die volle Breite */
+  .canvas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .element {
+    order: var(--mobile-order);
+  }
+  .canvas-spacer {
+    display: none;
+  }
+  /* Halbe Breite: einheitliches Hochformat, damit Bildpaare gleich hoch sind; volle Breite behält die Desktop-Form */
+  .element--image {
+    aspect-ratio: 4 / 5;
+  }
+  .element--full {
+    grid-column: 1 / -1;
+  }
+  .element--full.element--image {
+    aspect-ratio: var(--shape);
+  }
+  /* Automatisch verbreitert (kein Partner): Querformat statt der oft sehr hohen Desktop-Form */
+  .element--lone {
+    grid-column: 1 / -1;
+    aspect-ratio: 4 / 3;
+  }
+  .element--hidden-mobile {
+    display: none;
+  }
+  .element--text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 0;
+  }
+  .element--boxed {
+    padding: 2rem 1.5rem;
+  }
+  .element--center {
+    align-items: center;
+    text-align: center;
+  }
+  .element--left {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .canvas-rich :global(.canvas-block + .canvas-block) {
+    margin-top: 0.75rem;
+  }
+  .canvas-rich :global(strong) {
+    font-weight: 700;
+  }
+
+  /* Bilder und Videos füllen ihr Feld, ohne die Zeilenhöhe zu beeinflussen */
+  .element--image {
+    position: relative;
+  }
+  .element--image :global(img),
+  .element--image > video {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Desktop: 12 Spalten, so viele Zeilen wie belegt. Jede Zeile ist mindestens --row-factor × Spaltenbreite hoch
+     und wächst, wenn ein Text mehr Platz braucht. Texte nutzen die normale Schriftskala. */
+  @media (min-width: 64rem) {
+    .canvas-frame {
+      container-type: inline-size;
+    }
+    /* Zeilen frei in der Höhe; die Abstandshalter sorgen für die Mindesthöhe, Texte über mehrere Zeilen
+       vergrößern ihre Zeilen bei Bedarf gleichmäßig */
+    .canvas {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      grid-template-rows: repeat(var(--rows), auto);
+    }
+    .canvas-spacer {
+      display: block;
+      grid-column: 1;
+      height: calc(100cqw / 12 * var(--row-factor));
+      visibility: hidden;
+      pointer-events: none;
+    }
+    /* Keine Mindesthöhe 0: Die Texthöhe muss in die Zeilenhöhen eingehen, damit Zeilen mitwachsen.
+       Bilder und Videos tragen nichts bei, weil sie absolut positioniert sind. */
+    .element {
+      grid-area: var(--area);
+      order: 0;
+    }
+    .element--hidden-mobile {
+      display: block;
+    }
+    .element--hidden-mobile.element--text {
+      display: flex;
+    }
+    .element--image,
+    .element--lone {
+      aspect-ratio: auto;
+    }
+    .element--text {
+      padding: 0.5rem 1rem;
+    }
+    .element--boxed {
+      padding: 2rem;
+    }
+    .canvas-rich :global(.canvas-block + .canvas-block) {
+      margin-top: 0.7em;
+    }
+    .canvas-link :global(p) {
+      margin-top: 1.4em;
+    }
+    /* translate statt transform: verträgt sich mit der Einblend-Animation, die transform nutzt */
+    [data-parallax] {
+      translate: 0 var(--parallax-y, 0);
+      will-change: translate;
+    }
+  }
+</style>
+
+<script>
+  // Videos in der Fläche: laden, sobald sie in die Nähe kommen, abspielen nur solange sichtbar.
+  // Bei „Bewegung reduzieren“ bleibt das Vorschaubild stehen (bzw. das erste Bild des Videos).
+  const videos = [...document.querySelectorAll<HTMLVideoElement>('[data-canvas-video]')]
+  if (videos.length) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const load = (video: HTMLVideoElement) => {
+      if (!video.src && video.dataset.src) {
+        video.src = video.dataset.src
+        if (reduce.matches && !video.poster) video.preload = 'metadata'
+      }
+    }
+    const nearby = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => entry.isIntersecting && (load(entry.target as HTMLVideoElement), nearby.unobserve(entry.target))),
+      {rootMargin: '400px 0px'},
+    )
+    const visible = new IntersectionObserver((entries) =>
+      entries.forEach((entry) => {
+        const video = entry.target as HTMLVideoElement
+        if (entry.isIntersecting && !reduce.matches) {
+          load(video)
+          video.play().catch(() => {})
+        } else video.pause()
+      }),
+    )
+    videos.forEach((video) => {
+      nearby.observe(video)
+      visible.observe(video)
+    })
+    reduce.addEventListener('change', () => videos.forEach((video) => reduce.matches && video.pause()))
+  }
+
+  // Parallax: Elemente mit data-parallax (Faktor) verschieben sich proportional zu ihrem Abstand zur Fenstermitte.
+  // Nur auf dem Desktop und ohne „Bewegung reduzieren“.
+  const elements = [...document.querySelectorAll<HTMLElement>('[data-parallax]')]
+  if (elements.length) {
+    const desktop = window.matchMedia('(min-width: 64rem)')
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let ticking = false
+
+    const update = () => {
+      ticking = false
+      const active = desktop.matches && !reduceMotion.matches
+      const middle = window.innerHeight / 2
+      for (const el of elements) {
+        if (!active) {
+          el.style.removeProperty('--parallax-y')
+          continue
+        }
+        // Lage ohne die aktuelle Verschiebung messen, sonst schaukelt sich der Wert auf
+        const current = Number(el.dataset.parallaxY ?? 0)
+        const rect = el.getBoundingClientRect()
+        const center = rect.top - current + rect.height / 2
+        const offset = Math.round((center - middle) * Number(el.dataset.parallax) * 10) / 10
+        el.dataset.parallaxY = String(offset)
+        el.style.setProperty('--parallax-y', `${offset}px`)
+      }
+    }
+    const request = () => {
+      if (!ticking) {
+        ticking = true
+        requestAnimationFrame(update)
+      }
+    }
+    window.addEventListener('scroll', request, {passive: true})
+    window.addEventListener('resize', request)
+    desktop.addEventListener('change', request)
+    reduceMotion.addEventListener('change', request)
+    update()
+  }
+</script>

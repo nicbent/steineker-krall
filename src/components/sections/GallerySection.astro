@@ -1,0 +1,61 @@
+---
+import type {SiteImage} from '../../lib/content'
+import Img from '../Img.astro'
+
+interface Props {
+  heading?: string
+  images?: SiteImage[]
+}
+
+const {heading, images = []} = Astro.props
+
+// Abstand zwischen den Bildern in Rastereinheiten (1 Einheit = 1 % der Spaltenbreite)
+const GAP = 7
+---
+
+<section data-tone="light" class="theme-white pb-10">
+  <div class="container">
+  {heading && <h3 class="py-4" data-reveal>{heading}</h3>}
+  {
+    images.length > 0 && (
+      <div class="masonry-frame mt-6 pb-10">
+        <div class="masonry" style={`--gap: ${GAP}`}>
+          {images.map((image) => (
+            <div data-reveal="image" style={`grid-row: span ${Math.round((100 * image.height) / image.width) + GAP}`}>
+              <Img image={image} sizes="(min-width: 96rem) 30rem, (min-width: 64rem) 31vw, (min-width: 40rem) 48vw, 100vw" class="w-full" />
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+  </div>
+</section>
+
+<style>
+  /*
+   * Masonry in Lesereihenfolge: Jedes Bild belegt so viele 1-%-Zeilen, wie es hoch ist. Das Raster setzt
+   * die Bilder der Reihe nach von links nach rechts und füllt dabei immer die Spalte, die zuerst frei wird.
+   */
+  .masonry-frame {
+    container-type: inline-size;
+  }
+  .masonry {
+    --cols: 1;
+    --col: calc(100cqw / (var(--cols) + var(--gap) / 100 * (var(--cols) - 1)));
+    display: grid;
+    grid-template-columns: repeat(var(--cols), var(--col));
+    grid-auto-rows: calc(var(--col) / 100);
+    column-gap: calc(var(--col) / 100 * var(--gap));
+  }
+  @media (min-width: 40rem) {
+    .masonry {
+      --cols: 2;
+    }
+  }
+  @media (min-width: 64rem) {
+    .masonry {
+      --cols: 3;
+    }
+  }
+</style>

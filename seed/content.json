@@ -1,0 +1,3157 @@
+{
+  "settings": {
+    "_createdAt": "2026-10-11T16:21:18Z",
+    "_id": "siteSettings",
+    "_key": "k0000",
+    "_rev": "eiu79TX1NVj1DBWfKePXab",
+    "_system": {
+      "base": {
+        "id": "siteSettings",
+        "rev": "j2VTnzmnMIydV6LIcEStvx"
+      }
+    },
+    "_type": "siteSettings",
+    "_updatedAt": "2026-10-18T09:57:34Z",
+    "city": "22547 Hamburg",
+    "company": "Steineker & Krall GmbH",
+    "contactPanel": {
+      "groups": [
+        {
+          "_key": "k0007",
+          "body": [
+            {
+              "_key": "k0008",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k0009",
+                  "_type": "span",
+                  "marks": [
+                    "l0"
+                  ],
+                  "text": "Erzählen Sie uns von Ihrem Vorhaben"
+                }
+              ],
+              "markDefs": [
+                {
+                  "_key": "l0",
+                  "_type": "link",
+                  "href": "mailto:tischlerei@steineker-krall.de?subject=Projektanfrage"
+                }
+              ],
+              "style": "normal"
+            }
+          ],
+          "title": "Projekt anfragen"
+        },
+        {
+          "_key": "k000a",
+          "body": [
+            {
+              "_key": "k000b",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k000c",
+                  "_type": "span",
+                  "marks": [
+                    "l0"
+                  ],
+                  "text": "+49 (0)40 540 89 89"
+                },
+                {
+                  "_key": "k000d",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "\nFax +49 (0)40 540 79 90\n"
+                },
+                {
+                  "_key": "k000e",
+                  "_type": "span",
+                  "marks": [
+                    "l1"
+                  ],
+                  "text": "tischlerei@steineker-krall.de"
+                }
+              ],
+              "markDefs": [
+                {
+                  "_key": "l0",
+                  "_type": "link",
+                  "href": "tel:+49405408989"
+                },
+                {
+                  "_key": "l1",
+                  "_type": "link",
+                  "href": "mailto:tischlerei@steineker-krall.de"
+                }
+              ],
+              "style": "normal"
+            }
+          ],
+          "title": "Telefon & E-Mail"
+        },
+        {
+          "_key": "k000i",
+          "body": [
+            {
+              "_key": "k000j",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k000k",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Steineker & Krall GmbH\nFangdieckstraße 59\n22547 Hamburg"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k000l",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k000m",
+                  "_type": "span",
+                  "marks": [
+                    "f80e716c4f5b"
+                  ],
+                  "text": "Wegbeschreibung →"
+                }
+              ],
+              "markDefs": [
+                {
+                  "_key": "f80e716c4f5b",
+                  "_type": "link",
+                  "blank": true,
+                  "href": "https://maps.app.goo.gl/8KpmBF4g2jSJtDqF6"
+                }
+              ],
+              "style": "normal"
+            }
+          ],
+          "highlight": false,
+          "title": "Adresse"
+        },
+        {
+          "_key": "k000f",
+          "body": [
+            {
+              "_key": "k000g",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k000h",
+                  "_type": "span",
+                  "marks": [
+                    "l0"
+                  ],
+                  "text": "Instagram"
+                }
+              ],
+              "markDefs": [
+                {
+                  "_key": "l0",
+                  "_type": "link",
+                  "href": "/ueber-uns"
+                }
+              ],
+              "style": "normal"
+            }
+          ],
+          "title": "Social Media"
+        }
+      ],
+      "title": "Kontakt"
+    },
+    "copyright": "Steineker & Krall GmbH",
+    "description": "Tischlerei Steineker & Krall in Hamburg – Einbaumöbel, Küchen, Fenster, Türen und Objektbau, maßgefertigt.",
+    "email": "tischlerei@steineker-krall.de",
+    "fax": "+49 (0)40 540 79 90",
+    "legalLinks": [
+      {
+        "_key": "k0005",
+        "href": "/impressum",
+        "label": "Impressum"
+      },
+      {
+        "_key": "k0006",
+        "href": "/datenschutzerklaerung",
+        "label": "Datenschutz"
+      }
+    ],
+    "mapsUrl": "https://www.google.com/maps/dir/?api=1&destination=Fangdieckstra%C3%9Fe+59%2C+22547+Hamburg",
+    "navigation": [
+      {
+        "_key": "k0001",
+        "href": "/ueber-uns",
+        "label": "Über Uns"
+      },
+      {
+        "_key": "k0002",
+        "href": "/projekte",
+        "label": "Projekte"
+      },
+      {
+        "_key": "k0003",
+        "href": "/leistungen",
+        "label": "Leistungen"
+      },
+      {
+        "_key": "k0004",
+        "href": "#kontakt",
+        "label": "Kontakt"
+      }
+    ],
+    "phone": "+49 (0)40 540 89 89",
+    "smoothScroll": "soft",
+    "socialLabel": "Instagram",
+    "socialText": "Bleiben Sie auf dem Laufenden – folgen Sie uns auf",
+    "socialUrl": "/ueber-uns",
+    "street": "Fangdieckstraße 59",
+    "title": "Steineker & Krall"
+  },
+  "pages": [
+    {
+      "_createdAt": "2026-10-11T16:21:18Z",
+      "_id": "page-datenschutzerklaerung",
+      "_key": "k0043",
+      "_rev": "1D5F9xtM9CP8PBtGpqm1qs",
+      "_type": "page",
+      "_updatedAt": "2026-10-16T16:10:33Z",
+      "hero": {
+        "size": "none"
+      },
+      "sections": [
+        {
+          "_key": "k0044",
+          "_type": "richTextSection",
+          "body": [
+            {
+              "_key": "r9ie443g",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "hot8znir",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Stand: Oktober 2026"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "41dp4e6h",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "p1supexp",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "1. Verantwortliche Stelle"
+                }
+              ],
+              "markDefs": [],
+              "style": "h2"
+            },
+            {
+              "_key": "v3khv3i3",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "o98967pu",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Verantwortlich für die Datenverarbeitung auf dieser Website ist:"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "5sh578y5",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "g3h231uo",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Steineker & Krall GmbH\nvertreten durch den Geschäftsführer Alexander Krall\nFangdieckstraße 59\n22547 Hamburg"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "uf0lf7x8",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "3xc00r1j",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Telefon: 040 / 540 89 89\nE-Mail: "
+                },
+                {
+                  "_key": "br1skejc",
+                  "_type": "span",
+                  "marks": [
+                    "aipt900h"
+                  ],
+                  "text": "tischlerei@steineker-krall.de"
+                }
+              ],
+              "markDefs": [
+                {
+                  "_key": "aipt900h",
+                  "_type": "link",
+                  "href": "mailto:tischlerei@steineker-krall.de"
+                }
+              ],
+              "style": "normal"
+            },
+            {
+              "_key": "8gz6lhgc",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "3e406lzt",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "2. Das Wichtigste in Kürze"
+                }
+              ],
+              "markDefs": [],
+              "style": "h2"
+            },
+            {
+              "_key": "2b96o7fa",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "5wfvppkr",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Diese Website setzt keine Cookies und speichert keine Daten in Ihrem Browser. Wir verwenden keine Analyse- oder Werbedienste und binden keine Videos, Karten oder Social-Media-Inhalte anderer Anbieter ein."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "nvmickee",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "siurr5kw",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Beim Aufruf der Seiten werden technisch notwendige Daten verarbeitet, damit die Website ausgeliefert werden kann (Abschnitte 3 und 4). Wenn Sie uns kontaktieren, verarbeiten wir Ihre Angaben, um Ihre Anfrage zu beantworten (Abschnitt 6)."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "5nnmmff2",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "5lnrtuwx",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "3. Hosting und Server-Logdateien"
+                }
+              ],
+              "markDefs": [],
+              "style": "h2"
+            },
+            {
+              "_key": "xqo0ez4b",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "kw5d6mta",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Diese Website wird bei Netlify gehostet. Anbieter ist die Netlify, Inc., 101 2nd Street, San Francisco, CA 94105, USA."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "y7ph71a3",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "94q2q5g4",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Bei jedem Aufruf übermittelt Ihr Browser automatisch Daten, die in Server-Logdateien gespeichert werden:"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "l4a5wfgp",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "nw48v3lm",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "IP-Adresse"
+                }
+              ],
+              "level": 1,
+              "listItem": "bullet",
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "vyhykuaf",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "5qmhvb2j",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Datum und Uhrzeit des Zugriffs"
+                }
+              ],
+              "level": 1,
+              "listItem": "bullet",
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "9830mjtp",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "tkc909pt",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "aufgerufene Seite bzw. Datei"
+                }
+              ],
+              "level": 1,
+              "listItem": "bullet",
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "1ei05aoa",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "yj3jrqdg",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Referrer-URL (die zuvor besuchte Seite)"
+                }
+              ],
+              "level": 1,
+              "listItem": "bullet",
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "0h7g773v",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "8pdjwk95",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Browsertyp und -version sowie Betriebssystem"
+                }
+              ],
+              "level": 1,
+              "listItem": "bullet",
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "vp9yms0o",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "wbnmboja",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Diese Daten benötigen wir, um die Website auszuliefern sowie ihre Sicherheit und Stabilität zu gewährleisten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse liegt im sicheren und funktionsfähigen Betrieb der Website. Mit dem Anbieter besteht ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO. Die Logdateien werden nur so lange gespeichert, wie es für diese Zwecke erforderlich ist."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "qe15lyk8",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "j9jj0fdp",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Da Netlify seinen Sitz in den USA hat, können Daten dorthin übermittelt werden. Netlify ist nach dem EU-U.S. Data Privacy Framework zertifiziert, auf dessen Grundlage die EU-Kommission ein angemessenes Datenschutzniveau festgestellt hat (Art. 45 DSGVO); ergänzend nutzt Netlify die EU-Standardvertragsklauseln. Weitere Informationen: "
+                },
+                {
+                  "_key": "los3o37j",
+                  "_type": "span",
+                  "marks": [
+                    "9s6tqctp"
+                  ],
+                  "text": "netlify.com/privacy"
+                }
+              ],
+              "markDefs": [
+                {
+                  "_key": "9s6tqctp",
+                  "_type": "link",
+                  "href": "https://www.netlify.com/privacy/"
+                }
+              ],
+              "style": "normal"
+            },
+            {
+              "_key": "awxjtpv2",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "kztsx1o6",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "4. Auslieferung von Bildern und Videos"
+                }
+              ],
+              "markDefs": [],
+              "style": "h2"
+            },
+            {
+              "_key": "mk6hf18j",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "n4rtvfk0",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Bilder und Videos dieser Website werden über das Content Delivery Network des Content-Management-Systems Sanity ausgeliefert (cdn.sanity.io). Beim Laden eines Bildes oder Videos erhält der Anbieter Ihre IP-Adresse sowie die technischen Angaben Ihres Browsers."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "6ub7pffb",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "m1o6220d",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Anbieter ist – je nach Vertragsgestaltung – die Sanity AS, Trondheimsveien 2K, 0560 Oslo, Norwegen, oder die Sanity US Inc., 351 California Street, Suite 650, San Francisco, CA 94104, USA."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "d0zjf4qx",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "u7huvdj7",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse liegt in einer schnellen und zuverlässigen Darstellung der Website. Mit dem Anbieter besteht ein Vertrag zur Auftragsverarbeitung. Soweit Daten in Länder außerhalb der EU bzw. des EWR, insbesondere in die USA, übermittelt werden, erfolgt dies auf Grundlage der EU-Standardvertragsklauseln (Art. 46 DSGVO). Weitere Informationen: "
+                },
+                {
+                  "_key": "172atpom",
+                  "_type": "span",
+                  "marks": [
+                    "8937rtna"
+                  ],
+                  "text": "sanity.io/legal/privacy"
+                }
+              ],
+              "markDefs": [
+                {
+                  "_key": "8937rtna",
+                  "_type": "link",
+                  "href": "https://www.sanity.io/legal/privacy"
+                }
+              ],
+              "style": "normal"
+            },
+            {
+              "_key": "43dvk8zp",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "um7ru32d",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "5. Schriftarten"
+                }
+              ],
+              "markDefs": [],
+              "style": "h2"
+            },
+            {
+              "_key": "1v2z8cjo",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "afgw2pez",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Die auf dieser Website verwendete Schrift wird von unserem eigenen Server geladen. Dabei werden keine Daten an Dritte, etwa an Google, übertragen."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "17cscwix",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "zdci8r5d",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "6. Kontaktaufnahme per E-Mail oder Telefon"
+                }
+              ],
+              "markDefs": [],
+              "style": "h2"
+            },
+            {
+              "_key": "lsydfi19",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "f9x4k3oa",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Wenn Sie uns per E-Mail, Telefon oder Telefax kontaktieren, verarbeiten wir Ihre Angaben (z. B. Name, Kontaktdaten, Inhalt der Anfrage), um Ihr Anliegen zu bearbeiten."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "vzco4962",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "2s9zflyc",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit einem Vertrag zusammenhängt oder vorvertragliche Maßnahmen betrifft, im Übrigen Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse liegt in der Beantwortung Ihrer Anfrage. Wir löschen die Daten, sobald sie für diesen Zweck nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "swf26qk8",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "v29l0dgv",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "7. Links zu anderen Websites"
+                }
+              ],
+              "markDefs": [],
+              "style": "h2"
+            },
+            {
+              "_key": "83y9omxk",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "59z65cr9",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Diese Website enthält Links zu Angeboten anderer Anbieter, etwa zu Instagram und zu Google Maps für die Wegbeschreibung. Es handelt sich um einfache Links: Erst wenn Sie einen davon anklicken, werden Sie zum jeweiligen Anbieter weitergeleitet, und dieser verarbeitet Ihre Daten nach seiner eigenen Datenschutzerklärung."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "5d9bnj0i",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "tfmr1gko",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "8. SSL- bzw. TLS-Verschlüsselung"
+                }
+              ],
+              "markDefs": [],
+              "style": "h2"
+            },
+            {
+              "_key": "1ysm9q87",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "51xxvzs5",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Diese Website nutzt eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie an „https://“ in der Adresszeile Ihres Browsers."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "v6q3ta36",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "e3thdzam",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "9. Ihre Rechte"
+                }
+              ],
+              "markDefs": [],
+              "style": "h2"
+            },
+            {
+              "_key": "qx0dkvl9",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "v2fm4aoy",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Sie haben das Recht auf Auskunft über die zu Ihrer Person gespeicherten Daten (Art. 15 DSGVO), auf Berichtigung (Art. 16 DSGVO), auf Löschung (Art. 17 DSGVO), auf Einschränkung der Verarbeitung (Art. 18 DSGVO) und auf Datenübertragbarkeit (Art. 20 DSGVO)."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "tsszd8nc",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "x5wryphh",
+                  "_type": "span",
+                  "marks": [
+                    "strong"
+                  ],
+                  "text": "Widerspruchsrecht:"
+                },
+                {
+                  "_key": "tp2ptd7r",
+                  "_type": "span",
+                  "marks": [],
+                  "text": " Wenn wir Daten auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO verarbeiten, können Sie aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit widersprechen (Art. 21 DSGVO). Wir verarbeiten die Daten dann nicht mehr, es sei denn, wir können zwingende schutzwürdige Gründe nachweisen oder die Verarbeitung dient der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "2z7czn76",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "gyzb0lsy",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Haben Sie eine Einwilligung erteilt, können Sie diese jederzeit mit Wirkung für die Zukunft widerrufen."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "qoelu3j5",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "adrmvijm",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Für alle Anliegen genügt eine Nachricht an die oben genannten Kontaktdaten."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "ktyhta1z",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "5c53f05q",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "10. Beschwerderecht"
+                }
+              ],
+              "markDefs": [],
+              "style": "h2"
+            },
+            {
+              "_key": "g9qep3qg",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "7hjr6cwa",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren (Art. 77 DSGVO). Für uns zuständig ist der Hamburgische Beauftragte für Datenschutz und Informationsfreiheit."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "heading": "Datenschutzerklärung"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "datenschutzerklaerung"
+      },
+      "title": "Datenschutz"
+    },
+    {
+      "_createdAt": "2026-10-11T16:21:18Z",
+      "_id": "page-home",
+      "_key": "k0007",
+      "_rev": "upC16NfpTvRPeIxKVgWACN",
+      "_system": {
+        "base": {
+          "id": "page-home",
+          "rev": "upC16NfpTvRPeIxKVgW2rB"
+        }
+      },
+      "_type": "page",
+      "_updatedAt": "2026-10-16T16:57:10Z",
+      "hero": {
+        "image": {
+          "_type": "imageWithAlt",
+          "alt": "",
+          "source": {
+            "url": "https://cdn.sanity.io/images/grv0fyir/production/0dcabefce8a5d535c6787e0dcdc3621fe2279d93-2560x1706.jpg",
+            "width": 2560,
+            "height": 1706
+          }
+        },
+        "size": "full"
+      },
+      "sections": [
+        {
+          "_key": "k0008",
+          "_type": "canvasSection",
+          "elements": [
+            {
+              "_key": "67ccz9oe",
+              "_type": "canvasText",
+              "align": "center",
+              "background": "none",
+              "body": [
+                {
+                  "_key": "a4ppm4gu",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "qf7izg6i",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "Menschen, die wissen, was sie tun."
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "h2"
+                },
+                {
+                  "_key": "m2dug5rr",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "xq27o5ni",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "Hinter jedem Projekt steckt ein Team mit echtem Handwerk, echter Erfahrung und echtem Interesse an Ihrer Idee. Lernen Sie uns kennen."
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "lead"
+                }
+              ],
+              "column": 3,
+              "height": 4,
+              "link": {
+                "href": "/ueber-uns",
+                "label": "Über Uns"
+              },
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 1,
+              "width": 8
+            }
+          ],
+          "mobileOrder": "reading",
+          "rowHeight": "low",
+          "theme": "light"
+        },
+        {
+          "_key": "k0009",
+          "_type": "bannerSection",
+          "align": "center",
+          "backgroundImage": {
+            "_type": "imageWithAlt",
+            "alt": "",
+            "source": {
+              "url": "https://cdn.sanity.io/images/grv0fyir/production/eaab3617a621ddc033ddd1f8ef1c70cd4787190e-1922x1080.jpg",
+              "width": 1922,
+              "height": 1080
+            }
+          },
+          "backgroundVideo": {
+            "_type": "file",
+            "source": {
+              "url": "https://cdn.sanity.io/files/grv0fyir/production/91f822ab7d750aec0e2749b5bb2ee147d933f005.mp4"
+            }
+          },
+          "heading": "Für jeden Raum die richtige Lösung.",
+          "lead": "Einbaumöbel, Küchen, Fenster, Türen, Objektbau – alles aus einer Hand, alles mit demselben Anspruch: sauber, termingerecht, maßgefertigt.",
+          "link": {
+            "href": "/leistungen",
+            "label": "Unsere Leistungen"
+          }
+        },
+        {
+          "_key": "k000a",
+          "_type": "canvasSection",
+          "elements": [
+            {
+              "_key": "k000at",
+              "_type": "canvasText",
+              "align": "center",
+              "background": "none",
+              "body": [
+                {
+                  "_key": "bj7ss6wb",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "q3t9p3f0",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "Holz, das Geschichten erzählt."
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "h2"
+                },
+                {
+                  "_key": "cdw4dsed",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "ehvkbmba",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "Von der maßgefertigten Küche bis zum gewerblichen Innenausbau – hier sehen Sie, was entsteht, wenn Handwerk und Ideen zusammenkommen."
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "lead"
+                }
+              ],
+              "column": 4,
+              "height": 11,
+              "link": {
+                "href": "/projekte",
+                "label": "Zu den Projekten"
+              },
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 1,
+              "width": 6
+            },
+            {
+              "_key": "k000b",
+              "_type": "canvasImage",
+              "column": 2,
+              "height": 4,
+              "image": {
+                "_type": "imageWithAlt",
+                "alt": "",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/4ac172250d8a98095a94e9cfe97b5e042be260e8-1875x2500.jpg",
+                  "width": 1875,
+                  "height": 2500
+                }
+              },
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 1,
+              "width": 2
+            },
+            {
+              "_key": "k000c",
+              "_type": "canvasImage",
+              "column": 1,
+              "height": 5,
+              "image": {
+                "_type": "imageWithAlt",
+                "alt": "",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/d3ee203f2cc7ef8eaab1a46937f4a974477133e1-1875x2500.jpg",
+                  "width": 1875,
+                  "height": 2500
+                }
+              },
+              "mobile": "full",
+              "parallax": 0,
+              "row": 6,
+              "width": 3
+            },
+            {
+              "_key": "k000d",
+              "_type": "canvasImage",
+              "column": 10,
+              "height": 4,
+              "image": {
+                "_type": "imageWithAlt",
+                "alt": "",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/bc0f53653baf59bd60ecc15aa8f03d6ec7ca82e8-2500x1875.jpg",
+                  "width": 2500,
+                  "height": 1875
+                }
+              },
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 8,
+              "width": 3
+            },
+            {
+              "_key": "k000e",
+              "_type": "canvasImage",
+              "column": 10,
+              "height": 5,
+              "image": {
+                "_type": "imageWithAlt",
+                "alt": "",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/99a900496e7184932769974c459c0d6d5dd3193c-1068x1600.webp",
+                  "width": 1068,
+                  "height": 1600
+                }
+              },
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 2,
+              "width": 2
+            }
+          ],
+          "mobileOrder": "custom",
+          "mobileSequence": [
+            "k000b",
+            "k000e",
+            "k000at",
+            "k000c",
+            "k000d"
+          ],
+          "rowHeight": "low"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "home"
+      },
+      "title": "Startseite"
+    },
+    {
+      "_createdAt": "2026-10-11T16:21:18Z",
+      "_id": "page-impressum",
+      "_key": "k002a",
+      "_rev": "ivyPNhiolnG19qkaRmvtRU",
+      "_type": "page",
+      "_updatedAt": "2026-10-11T16:35:12Z",
+      "hero": {
+        "size": "none"
+      },
+      "sections": [
+        {
+          "_key": "k002b",
+          "_type": "richTextSection",
+          "body": [
+            {
+              "_key": "k002c",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k002d",
+                  "_type": "span",
+                  "marks": [
+                    "strong"
+                  ],
+                  "text": "Angaben gemäß § 5 TMG"
+                },
+                {
+                  "_key": "k002e",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "\nSteineker & Krall GmbH\nFangdieckstraße 59\n22547 Hamburg"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k002f",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k002g",
+                  "_type": "span",
+                  "marks": [
+                    "strong"
+                  ],
+                  "text": "Vertreten durch"
+                },
+                {
+                  "_key": "k002h",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "\nGeschäftsführer:  Alexander Krall"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k002i",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k002j",
+                  "_type": "span",
+                  "marks": [
+                    "strong"
+                  ],
+                  "text": "Kontakt"
+                },
+                {
+                  "_key": "k002k",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "\nTelefon: 040 / 540 89 89\nTelefax: 040 / 540 79 90\nE-Mail: tischlerei@steineker-krall.de"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k002l",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k002m",
+                  "_type": "span",
+                  "marks": [
+                    "strong"
+                  ],
+                  "text": "Registereintrag"
+                },
+                {
+                  "_key": "k002n",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "\nEintragung im Handelsregister\nRegistergericht: Amtsgericht Hamburg\nRegisternummer: HRB 57482"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k002o",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k002p",
+                  "_type": "span",
+                  "marks": [
+                    "strong"
+                  ],
+                  "text": "Steuernummer"
+                },
+                {
+                  "_key": "k002q",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "\n45 / 760 / 00311"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k002r",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k002s",
+                  "_type": "span",
+                  "marks": [
+                    "strong"
+                  ],
+                  "text": "Umsatzsteuer"
+                },
+                {
+                  "_key": "k002t",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "\nUmsatzsteuer-Identifikationsnummer gemäß §27a \nUmsatzsteuergesetz: DE 342075737"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k002u",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k002v",
+                  "_type": "span",
+                  "marks": [
+                    "strong"
+                  ],
+                  "text": "Angaben zur Berufshaftpflichtversicherung"
+                },
+                {
+                  "_key": "k002w",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "\nName und Sitz des Versicherers:\nSOVAG, Schwanenwik 37, 22087 Hamburg"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k002x",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k002y",
+                  "_type": "span",
+                  "marks": [
+                    "strong"
+                  ],
+                  "text": "Zuständige Kammer"
+                },
+                {
+                  "_key": "k002z",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "\nHandwerkskammer Hamburg\nHolstenwall 12\n20355 Hamburg"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k0030",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k0031",
+                  "_type": "span",
+                  "marks": [
+                    "strong"
+                  ],
+                  "text": "Innung"
+                },
+                {
+                  "_key": "k0032",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "\nTischler-Innung Hamburg beim\nFachverband Holz und Kunststoff Hamburg e.V.\nAlbert-Schweitzer-Ring 10\n22045 Hamburg"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k0033",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k0034",
+                  "_type": "span",
+                  "marks": [
+                    "strong"
+                  ],
+                  "text": "Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV"
+                },
+                {
+                  "_key": "k0035",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "\nAlexander Krall\nFangdieckstraße 59\n22547 Hamburg"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k0036",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k0037",
+                  "_type": "span",
+                  "marks": [
+                    "strong"
+                  ],
+                  "text": "Quellenangaben für die verwendeten Bilder und Grafiken"
+                },
+                {
+                  "_key": "k0038",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "\nSteineker & Krall GmbH\nLennart Seeburg\nHagen Stier\nLivingshutters Daniel Giger"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k0039",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k003a",
+                  "_type": "span",
+                  "marks": [
+                    "strong"
+                  ],
+                  "text": "Ausgewählte Arbeiten von"
+                },
+                {
+                  "_key": "k003b",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "\nHennings Börn Interiors, Hamburg"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k003c",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k003d",
+                  "_type": "span",
+                  "marks": [
+                    "strong"
+                  ],
+                  "text": "Streitschlichtung"
+                },
+                {
+                  "_key": "k003e",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "\nDie Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: "
+                },
+                {
+                  "_key": "k003f",
+                  "_type": "span",
+                  "marks": [
+                    "l0"
+                  ],
+                  "text": "https://ec.europa.eu/consumers/odr"
+                },
+                {
+                  "_key": "k003g",
+                  "_type": "span",
+                  "marks": [],
+                  "text": ".\nUnsere E-Mail-Adresse finden Sie oben im Impressum."
+                }
+              ],
+              "markDefs": [
+                {
+                  "_key": "l0",
+                  "_type": "link",
+                  "href": "https://ec.europa.eu/consumers/odr"
+                }
+              ],
+              "style": "normal"
+            },
+            {
+              "_key": "k003h",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k003i",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Wir nehmen an einem Streitbeilegungsverfahren vor einer  Verbraucherschlichtungsstelle teil. Die zuständige  Verbraucherschlichtungsstelle ist:"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k003j",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k003k",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Allgemeine Verbraucherschlichtungsstelle des Zentrums für Schlichtung e.V.\nStraßburger Straße 8, 77694 Kehl am Rhein\nTelefon 07851 / 795 79 40\nFax 07851 / 795 79 41\nE-Mail: "
+                },
+                {
+                  "_key": "k003l",
+                  "_type": "span",
+                  "marks": [
+                    "l0"
+                  ],
+                  "text": "mail@verbraucher-schlichter.de"
+                },
+                {
+                  "_key": "k003m",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "\nWebseite: "
+                },
+                {
+                  "_key": "k003n",
+                  "_type": "span",
+                  "marks": [
+                    "l1"
+                  ],
+                  "text": "www.verbraucher-schlichter.de"
+                }
+              ],
+              "markDefs": [
+                {
+                  "_key": "l0",
+                  "_type": "link",
+                  "href": "mailto:mail@verbraucher-schlichter.de"
+                },
+                {
+                  "_key": "l1",
+                  "_type": "link",
+                  "href": "http://www.verbraucher-schlichter.de/"
+                }
+              ],
+              "style": "normal"
+            },
+            {
+              "_key": "k003o",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k003p",
+                  "_type": "span",
+                  "marks": [
+                    "strong"
+                  ],
+                  "text": "Haftung für Inhalte"
+                },
+                {
+                  "_key": "k003q",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "\nAls Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte  auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8  bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet,  übermittelte oder gespeicherte fremde Informationen zu überwachen oder  nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit  hinweisen."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k003r",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k003s",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Verpflichtungen zur Entfernung oder Sperrung der Nutzung von  Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt.  Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der  Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von  entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend  entfernen."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k003t",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k003u",
+                  "_type": "span",
+                  "marks": [
+                    "strong"
+                  ],
+                  "text": "Haftung für Links"
+                },
+                {
+                  "_key": "k003v",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "\nUnser Angebot enthält Links zu externen Websites Dritter, auf deren  Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden  Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten  Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten  verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der  Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte  waren zum Zeitpunkt der Verlinkung nicht erkennbar."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k003w",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k003x",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist  jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht  zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige  Links umgehend entfernen."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k003y",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k003z",
+                  "_type": "span",
+                  "marks": [
+                    "strong"
+                  ],
+                  "text": "Urheberrecht"
+                },
+                {
+                  "_key": "k0040",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "\nDie durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen  Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung,  Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der  Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des  jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite  sind nur für den privaten, nicht kommerziellen Gebrauch gestattet."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            },
+            {
+              "_key": "k0041",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "k0042",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt  wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden  Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine  Urheberrechtsverletzung aufmerksam werden, bitten wir um einen  entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden  wir derartige Inhalte umgehend entfernen."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ],
+          "heading": "Impressum"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "impressum"
+      },
+      "title": "Impressum"
+    },
+    {
+      "_createdAt": "2026-10-11T16:21:18Z",
+      "_id": "page-leistungen",
+      "_key": "k001x",
+      "_rev": "f8NnccEg8f37VmipfWjJGV",
+      "_system": {
+        "base": {
+          "id": "page-leistungen",
+          "rev": "rrxfamWfOyzP7wKk5sOwaU"
+        }
+      },
+      "_type": "page",
+      "_updatedAt": "2026-10-16T18:55:49Z",
+      "anchorNav": true,
+      "hero": {
+        "image": {
+          "_type": "imageWithAlt",
+          "alt": "",
+          "source": {
+            "url": "https://cdn.sanity.io/images/grv0fyir/production/221d8837b550221beeefd2e16f958ed41ec5e8c1-2560x1706.jpg",
+            "width": 2560,
+            "height": 1706
+          }
+        },
+        "size": "half"
+      },
+      "sections": [
+        {
+          "_key": "k001yi",
+          "_type": "introSection",
+          "heading": "Leistungen",
+          "lead": "Ein Handwerksprojekt ist immer eine gemeinsame Sache. Damit es von Anfang an reibungslos läuft, haben wir unseren Ablauf klar strukturiert — von der ersten Anfrage bis zur Abnahme. Sie wissen immer, in welchem Schritt wir stecken, was als Nächstes kommt und wer Ihr Ansprechpartner ist. Kein Rätselraten, keine langen Warteschleifen. Nur ein Prozess, der funktioniert — und am Ende ein Ergebnis, das sitzt.",
+          "theme": "white"
+        },
+        {
+          "_key": "k001y",
+          "_type": "canvasSection",
+          "anchorLabel": "Projektablauf",
+          "elements": [
+            {
+              "_key": "k001z",
+              "_type": "canvasText",
+              "align": "left",
+              "background": "none",
+              "body": [
+                {
+                  "_key": "q3axhizg",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "tk0u7nxt",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "01 Anfrage per Telefon oder Mail"
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "h3"
+                }
+              ],
+              "column": 3,
+              "height": 1,
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 1,
+              "width": 3
+            },
+            {
+              "_key": "k0021",
+              "_type": "canvasText",
+              "align": "left",
+              "background": "none",
+              "body": [
+                {
+                  "_key": "1ol8rwwg",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "88qnyc0r",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "03 Aufmaß"
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "h3"
+                }
+              ],
+              "column": 2,
+              "height": 1,
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 5,
+              "width": 3
+            },
+            {
+              "_key": "k0020",
+              "_type": "canvasText",
+              "align": "left",
+              "background": "none",
+              "body": [
+                {
+                  "_key": "cxl94kto",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "tx2cj3hd",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "02 Wir treffen uns"
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "h3"
+                }
+              ],
+              "column": 8,
+              "height": 1,
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 2,
+              "width": 3
+            },
+            {
+              "_key": "k0022",
+              "_type": "canvasText",
+              "align": "left",
+              "background": "none",
+              "body": [
+                {
+                  "_key": "5u9t8t1a",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "92bjek36",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "04 Entwurf"
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "h3"
+                }
+              ],
+              "column": 8,
+              "height": 1,
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 6,
+              "width": 4
+            },
+            {
+              "_key": "k0023",
+              "_type": "canvasText",
+              "align": "left",
+              "background": "none",
+              "body": [
+                {
+                  "_key": "ea45qhnw",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "4x32g2mn",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "05 Fertigung"
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "h3"
+                }
+              ],
+              "column": 2,
+              "height": 1,
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 9,
+              "width": 4
+            },
+            {
+              "_key": "nxigylno",
+              "_type": "canvasImage",
+              "column": 3,
+              "height": 2,
+              "image": {
+                "_type": "imageWithAlt",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/c46b2a5889283c3718f2b2c4f3956c42e1f0773d-1920x1080.webp",
+                  "width": 1920,
+                  "height": 1080
+                }
+              },
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 2,
+              "width": 3
+            },
+            {
+              "_key": "k0024",
+              "_type": "canvasText",
+              "align": "left",
+              "background": "none",
+              "body": [
+                {
+                  "_key": "yb3hmr5f",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "2zcy3093",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "06 Montage"
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "h3"
+                }
+              ],
+              "column": 8,
+              "height": 1,
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 10,
+              "width": 4
+            },
+            {
+              "_key": "3e1mnvae",
+              "_type": "canvasImage",
+              "column": 8,
+              "height": 2,
+              "image": {
+                "_type": "imageWithAlt",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/58f551de5ce69fb92dba39dfa307a4f26312e298-2560x1706.jpg",
+                  "width": 2560,
+                  "height": 1706
+                }
+              },
+              "mobile": "auto",
+              "row": 3,
+              "width": 3
+            },
+            {
+              "_key": "ydidho69",
+              "_type": "canvasImage",
+              "column": 2,
+              "height": 2,
+              "image": {
+                "_type": "imageWithAlt",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/f3e3bb57a78332145b165a58937e3fa68188632c-1707x2560.jpg",
+                  "width": 1707,
+                  "height": 2560
+                }
+              },
+              "mobile": "auto",
+              "row": 6,
+              "width": 3
+            },
+            {
+              "_key": "bzp9uvfi",
+              "_type": "canvasImage",
+              "column": 8,
+              "height": 2,
+              "image": {
+                "_type": "imageWithAlt",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/f7aeb861971dc1d8f4b200613b2050e85707d939-1707x2560.jpg",
+                  "width": 1707,
+                  "height": 2560
+                }
+              },
+              "mobile": "auto",
+              "row": 7,
+              "width": 3
+            },
+            {
+              "_key": "6ovdg711",
+              "_type": "canvasImage",
+              "column": 2,
+              "height": 2,
+              "image": {
+                "_type": "imageWithAlt",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/4f636adbca827f13e2a581d016d38ff73c1e43ad-2560x1706.jpg",
+                  "width": 2560,
+                  "height": 1706
+                }
+              },
+              "mobile": "auto",
+              "row": 10,
+              "width": 4
+            },
+            {
+              "_key": "hjjjel0n",
+              "_type": "canvasImage",
+              "column": 8,
+              "height": 2,
+              "image": {
+                "_type": "imageWithAlt",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/7a77116b0b4f935b247c4779b5b77914bbff6dac-1600x1068.jpg",
+                  "width": 1600,
+                  "height": 1068
+                }
+              },
+              "mobile": "auto",
+              "row": 11,
+              "width": 4
+            }
+          ],
+          "heading": "Projektablauf Schritt für Schritt",
+          "lead": "Ein Handwerksprojekt ist immer eine gemeinsame Sache. Damit es von Anfang an reibungslos läuft, haben wir unseren Ablauf klar strukturiert — von der ersten Anfrage bis zur Abnahme. Sie wissen immer, in welchem Schritt wir stecken, was als Nächstes kommt und wer Ihr Ansprechpartner ist. Kein Rätselraten, keine langen Warteschleifen. Nur ein Prozess, der funktioniert — und am Ende ein Ergebnis, das sitzt.",
+          "mobileOrder": "custom",
+          "rowHeight": "medium",
+          "theme": "light"
+        },
+        {
+          "_key": "k0025",
+          "_type": "canvasSection",
+          "anchorLabel": "Unser Versprechen",
+          "elements": [
+            {
+              "_key": "k0026",
+              "_type": "canvasText",
+              "align": "center",
+              "background": "none",
+              "body": [
+                {
+                  "_key": "v7bw45d3",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "d3esbmii",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "Kurze, direkte Dienstwege"
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "h4"
+                },
+                {
+                  "_key": "7r9sv617",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "5qmx9xor",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "Bei uns gibt es keinen Umweg über Sachbearbeiter oder Callcenter. Ihr Ansprechpartner kennt Ihr Projekt – und ist direkt erreichbar. Fragen werden beantwortet, nicht weitergeleitet."
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "normal"
+                }
+              ],
+              "column": 2,
+              "height": 3,
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 6,
+              "width": 4
+            },
+            {
+              "_key": "k0027",
+              "_type": "canvasText",
+              "align": "center",
+              "background": "none",
+              "body": [
+                {
+                  "_key": "l2krnl5h",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "jme0q1ge",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "Transparente Prozesse"
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "h4"
+                },
+                {
+                  "_key": "ni6g57ii",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "lvurq9m4",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "Sie wissen immer, in welchem Schritt Ihr Projekt steckt. Wir kommunizieren offen – auch wenn es mal eine Verzögerung gibt. Keine Überraschungen, keine unklaren Aussagen."
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "normal"
+                }
+              ],
+              "column": 8,
+              "height": 3,
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 6,
+              "width": 4
+            },
+            {
+              "_key": "qsbmon98",
+              "_type": "canvasVideo",
+              "column": 2,
+              "height": 5,
+              "mobile": "auto",
+              "row": 1,
+              "video": {
+                "_type": "file",
+                "source": {
+                  "url": "https://cdn.sanity.io/files/grv0fyir/production/202d284b61f7faee7f8ceb1c9a2256913f0b1f27.mp4"
+                }
+              },
+              "width": 4
+            }
+          ],
+          "heading": "Unser Versprechen",
+          "lead": "Gute Arbeit zeigt sich nicht nur im Ergebnis, sondern auch im Weg dorthin. Diese beiden Dinge sind uns besonders wichtig.",
+          "mobileOrder": "custom",
+          "mobileSequence": [
+            "k0026",
+            "qsbmon98",
+            "k0027"
+          ],
+          "rowHeight": "low"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "leistungen"
+      },
+      "title": "Leistungen"
+    },
+    {
+      "_createdAt": "2026-10-11T16:21:18Z",
+      "_id": "page-projekte",
+      "_key": "k0015",
+      "_rev": "VCONFsPx0K7oh5a4VEExTw",
+      "_system": {
+        "base": {
+          "id": "page-projekte",
+          "rev": "ivyPNhiolnG19qkaRmzJFt"
+        }
+      },
+      "_type": "page",
+      "_updatedAt": "2026-10-15T13:26:49Z",
+      "anchorNav": true,
+      "hero": {
+        "image": {
+          "_type": "imageWithAlt",
+          "alt": "",
+          "source": {
+            "url": "https://cdn.sanity.io/images/grv0fyir/production/63dc9284e1fb782fbc992f9bb366cebc44b73ba6-1600x900.webp",
+            "width": 1600,
+            "height": 900
+          }
+        },
+        "size": "half"
+      },
+      "sections": [
+        {
+          "_key": "k0016",
+          "_type": "introSection",
+          "heading": "Projekte",
+          "lead": "Jedes Projekt beginnt mit einer Idee – und endet mit etwas, das bleibt. Hier zeigen wir einen Ausschnitt unserer Arbeit: von der maßgefertigten Küchenzeile bis zum kompletten gewerblichen Innenausbau. Nicht als Schaufenster, sondern als Einblick in das, was uns antreibt.",
+          "theme": "white"
+        },
+        {
+          "_key": "k0017",
+          "_type": "gallerySection",
+          "anchorLabel": "Innenausbau",
+          "heading": "Innenausbau",
+          "images": [
+            {
+              "_key": "k001a",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/1e11e9c32ce90211c928e0bda5f5fedccd4d1f5d-1600x1600.webp",
+                "width": 1600,
+                "height": 1600
+              }
+            },
+            {
+              "_key": "k001b",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/814ac574a465a2de6e92ef1d1dc675fa6add5eae-1600x1068.webp",
+                "width": 1600,
+                "height": 1068
+              }
+            },
+            {
+              "_key": "k0019",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/7591914c875fd61c3949c3831f2c6ffc022a6a4d-1600x1080.webp",
+                "width": 1600,
+                "height": 1080
+              }
+            },
+            {
+              "_key": "k001c",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/3b2c7973a7149fa5e480b27c02d7156849815093-2500x1666.webp",
+                "width": 2500,
+                "height": 1666
+              }
+            },
+            {
+              "_key": "k001d",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/52237a92cb393dd8a86908baffe68651308db61e-1068x1600.webp",
+                "width": 1068,
+                "height": 1600
+              }
+            },
+            {
+              "_key": "k001e",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/af58b9b9e10d47387467ba8a3e3b84a64ee4f9a2-1875x2500.webp",
+                "width": 1875,
+                "height": 2500
+              }
+            },
+            {
+              "_key": "k001f",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/5506d6079660ab5b2a14e8cb6bd35c6bf2256159-2500x1666.jpg",
+                "width": 2500,
+                "height": 1666
+              }
+            },
+            {
+              "_key": "k001g",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/1f9c20de64aff63e3584894398b98cd183897c19-2500x1666.webp",
+                "width": 2500,
+                "height": 1666
+              }
+            },
+            {
+              "_key": "k001h",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/99a900496e7184932769974c459c0d6d5dd3193c-1068x1600.webp",
+                "width": 1068,
+                "height": 1600
+              }
+            },
+            {
+              "_key": "k0018",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/866064ad498ab5473ea6b07e2081cdd349a10008-1600x1068.webp",
+                "width": 1600,
+                "height": 1068
+              }
+            },
+            {
+              "_key": "k001i",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/fc9994a2d7ee7449010bfb049b7c13f6a210b101-2500x1164.jpg",
+                "width": 2500,
+                "height": 1164
+              }
+            },
+            {
+              "_key": "k001j",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/67459b3327daf2d19110419df1dc4fbb156310d3-2500x1666.webp",
+                "width": 2500,
+                "height": 1666
+              }
+            },
+            {
+              "_key": "k001k",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/1e7ae2262fe83b5a0510493ca6771d195d024b8f-800x533.webp",
+                "width": 800,
+                "height": 533
+              }
+            },
+            {
+              "_key": "k001l",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/2f8a869993470a3f785ae00a57bc0ae124fd9d21-2500x1666.webp",
+                "width": 2500,
+                "height": 1666
+              }
+            },
+            {
+              "_key": "k001m",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/d9f268d3ad9a248a5bf18801ed45839be11c7408-1668x2500.webp",
+                "width": 1668,
+                "height": 2500
+              }
+            },
+            {
+              "_key": "k001n",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/a6f409a31e8f974a2fc2d7568c82948ee1c72bb5-2500x1852.webp",
+                "width": 2500,
+                "height": 1852
+              }
+            },
+            {
+              "_key": "k001o",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/33e8fcbe2373e8ab77f6d6680f0b177ca262ef77-2500x1861.webp",
+                "width": 2500,
+                "height": 1861
+              }
+            },
+            {
+              "_key": "k001p",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/3caa57e82eead8f103b7c90932c0855c7ae695fa-800x533.webp",
+                "width": 800,
+                "height": 533
+              }
+            },
+            {
+              "_key": "k001q",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/73cacf2751656aca0493e62d5a0630a72da0368a-1875x2500.webp",
+                "width": 1875,
+                "height": 2500
+              }
+            },
+            {
+              "_key": "k001r",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/db66468cd3a91bb7258d526b39e1552f843c10f3-2500x1875.webp",
+                "width": 2500,
+                "height": 1875
+              }
+            },
+            {
+              "_key": "k001s",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/db51b8655c2f003cd47ff22ee52f92c1aedf5bc4-1875x2500.jpg",
+                "width": 1875,
+                "height": 2500
+              }
+            },
+            {
+              "_key": "k001t",
+              "_type": "imageWithAlt",
+              "alt": "",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/b400f8846d8e131ddb3c56f92ee33189675fddb1-2500x1875.webp",
+                "width": 2500,
+                "height": 1875
+              }
+            }
+          ]
+        },
+        {
+          "_key": "k001u",
+          "_type": "gallerySection",
+          "anchorLabel": "Küchen",
+          "heading": "Küchen",
+          "images": [
+            {
+              "_key": "ebc5ee50cf7b",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/4a486f7d61a5fe54c075e57a3ef9d549326e300c-2500x1875.jpg",
+                "width": 2500,
+                "height": 1875
+              }
+            },
+            {
+              "_key": "680633cc71a9",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/d3ee203f2cc7ef8eaab1a46937f4a974477133e1-1875x2500.jpg",
+                "width": 1875,
+                "height": 2500
+              }
+            },
+            {
+              "_key": "d49d60d8a5d6",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/e02b80e887664276bc51cc8b8a56ca97283664cb-1875x2500.jpg",
+                "width": 1875,
+                "height": 2500
+              }
+            },
+            {
+              "_key": "a021a3e49d8e",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/277240bc30872a688e3dde9c619229b13c3d2e0b-1242x732.jpg",
+                "width": 1242,
+                "height": 732
+              }
+            },
+            {
+              "_key": "3334170059e1",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/d8f24b0179667f0d633a2473218dff122fd1fd85-2500x2068.jpg",
+                "width": 2500,
+                "height": 2068
+              }
+            },
+            {
+              "_key": "0f8a53d25e61",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/7a77116b0b4f935b247c4779b5b77914bbff6dac-1600x1068.jpg",
+                "width": 1600,
+                "height": 1068
+              }
+            }
+          ]
+        },
+        {
+          "_key": "k001v",
+          "_type": "gallerySection",
+          "anchorLabel": "Möbelbau",
+          "heading": "Möbelbau",
+          "images": [
+            {
+              "_key": "fa43322e9a73",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/49034403fa35ddad7609d8e659814ac441e838a0-1875x2500.jpg",
+                "width": 1875,
+                "height": 2500
+              }
+            },
+            {
+              "_key": "1e662a099a5a",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/81cd761657f2298c40e5bda91485db77bc61c189-800x533.jpg",
+                "width": 800,
+                "height": 533
+              }
+            },
+            {
+              "_key": "38b3d880d579",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/43443639542900122033a58409b25ac94502c565-2500x1666.jpg",
+                "width": 2500,
+                "height": 1666
+              }
+            },
+            {
+              "_key": "e2043290eab2",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/259c7b2cde74f2cd0214d9d49bb998fc21470c05-2500x1666.jpg",
+                "width": 2500,
+                "height": 1666
+              }
+            },
+            {
+              "_key": "6c04ee3d0b8c",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/869f8778eeb3d6458ea0bc6aef14c98e332c213a-1875x2500.jpg",
+                "width": 1875,
+                "height": 2500
+              }
+            },
+            {
+              "_key": "097363a9a579",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/393380357c6d59fb9ba9e83e8e0ef9866c032b89-524x800.jpg",
+                "width": 524,
+                "height": 800
+              }
+            },
+            {
+              "_key": "ab8bdf1b30b3",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/7b353678968b868d015f0c596fc90ab4eed90ed4-2500x1875.jpg",
+                "width": 2500,
+                "height": 1875
+              }
+            },
+            {
+              "_key": "c953a4584286",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/dd72cf89c011351f8f77acedda92830b24160cfb-1875x2500.jpg",
+                "width": 1875,
+                "height": 2500
+              }
+            },
+            {
+              "_key": "90f3016d46a7",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/18a12c41576bc34719cab40e336bddec0afed2e1-549x800.jpg",
+                "width": 549,
+                "height": 800
+              }
+            },
+            {
+              "_key": "29e2152adf85",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/08fea65f237d76dc83e3332db38cf26418417981-533x800.jpg",
+                "width": 533,
+                "height": 800
+              }
+            },
+            {
+              "_key": "212585f87b1b",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/3c509bb7aa61b98bdcbf78886e11a975374a7995-800x533.jpg",
+                "width": 800,
+                "height": 533
+              }
+            },
+            {
+              "_key": "50c3823c4518",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/a9121e5bc2267fb7a15ffa522f5f9cc8190c0efa-2500x2500.jpg",
+                "width": 2500,
+                "height": 2500
+              }
+            },
+            {
+              "_key": "b4f03e2ee234",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/a33113db64e383d84816b8754f4099c26225f93f-2500x827.jpg",
+                "width": 2500,
+                "height": 827
+              }
+            },
+            {
+              "_key": "048607a8b89d",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/6a56874b928a0d632e8dde48d2ec895a740fed51-1875x2500.jpg",
+                "width": 1875,
+                "height": 2500
+              }
+            },
+            {
+              "_key": "b5643952b6fd",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/aed03ab6ae92e93d5ab47962c85a2733eb5cf0f9-800x533.jpg",
+                "width": 800,
+                "height": 533
+              }
+            },
+            {
+              "_key": "70bd27c00b21",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/bd87281d530e20df965ffab52709c31829348b32-533x800.jpg",
+                "width": 533,
+                "height": 800
+              }
+            },
+            {
+              "_key": "0e3d1f2a45d8",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/05a3dc9d64e3a487cd9cfa174bb3d8b00e839230-800x533.jpg",
+                "width": 800,
+                "height": 533
+              }
+            },
+            {
+              "_key": "ff3b7da2a792",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/a79e1863852da5ae2c0e52ddbf8f6ee5eab6e749-1875x2500.jpg",
+                "width": 1875,
+                "height": 2500
+              }
+            },
+            {
+              "_key": "3a7a00e6a886",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/04c843f994582828fdd70feaa035e2c634539492-533x800.jpg",
+                "width": 533,
+                "height": 800
+              }
+            },
+            {
+              "_key": "cf16a7613892",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/0332ec1cdf5d2ee11d2000acfa06c670b03f4c18-1875x2500.jpg",
+                "width": 1875,
+                "height": 2500
+              }
+            },
+            {
+              "_key": "3f22dc914897",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/8ff11de5a682ff1358d4c98ca56bda6b29789e8b-800x533.jpg",
+                "width": 800,
+                "height": 533
+              }
+            },
+            {
+              "_key": "806b5f0c28c8",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/4ac172250d8a98095a94e9cfe97b5e042be260e8-1875x2500.jpg",
+                "width": 1875,
+                "height": 2500
+              }
+            },
+            {
+              "_key": "9128ea598904",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/10e0c8d454f32a1a01ebcd957b0af14832ac9598-2500x1666.jpg",
+                "width": 2500,
+                "height": 1666
+              }
+            },
+            {
+              "_key": "585f99fa874b",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/39ab92afb54545e7ffa88d32eda08a514aa56ff6-533x800.jpg",
+                "width": 533,
+                "height": 800
+              }
+            },
+            {
+              "_key": "96b5c9f01a31",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/dce4c474ce457fa6306aba56b950cfc909acca6d-2500x1667.jpg",
+                "width": 2500,
+                "height": 1667
+              }
+            },
+            {
+              "_key": "399b72153703",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/7d20dc9eef36fc7e8010c4d95e645f912eaf3ed9-1875x2500.jpg",
+                "width": 1875,
+                "height": 2500
+              }
+            },
+            {
+              "_key": "42d0498497a2",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/f0081eda7d55107e17c36ddb7c87809f97f00a50-800x533.jpg",
+                "width": 800,
+                "height": 533
+              }
+            }
+          ]
+        },
+        {
+          "_key": "k001w",
+          "_type": "gallerySection",
+          "anchorLabel": "Türen",
+          "heading": "Türen",
+          "images": [
+            {
+              "_key": "b8bdab40dbd9",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/53f8e7006888a0c4272e52ca70c1c77ba94986d2-1875x2500.jpg",
+                "width": 1875,
+                "height": 2500
+              }
+            },
+            {
+              "_key": "5f84cd3ae92f",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/bc0f53653baf59bd60ecc15aa8f03d6ec7ca82e8-2500x1875.jpg",
+                "width": 2500,
+                "height": 1875
+              }
+            },
+            {
+              "_key": "1f554af98a9c",
+              "_type": "imageWithAlt",
+              "source": {
+                "url": "https://cdn.sanity.io/images/grv0fyir/production/8427b16b115e0df22153f02a64d9cc33c3c2aad4-1875x2500.jpg",
+                "width": 1875,
+                "height": 2500
+              }
+            }
+          ]
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "projekte"
+      },
+      "title": "Projekte"
+    },
+    {
+      "_createdAt": "2026-10-11T16:21:18Z",
+      "_id": "page-ueber-uns",
+      "_key": "k000f",
+      "_rev": "JbEcLtv325wEBDy8eKF54n",
+      "_system": {
+        "base": {
+          "id": "page-ueber-uns",
+          "rev": "JbEcLtv325wEBDy8eKF4KB"
+        }
+      },
+      "_type": "page",
+      "_updatedAt": "2026-10-18T09:55:43Z",
+      "anchorNav": true,
+      "hero": {
+        "image": {
+          "_type": "imageWithAlt",
+          "alt": "",
+          "source": {
+            "url": "https://cdn.sanity.io/images/grv0fyir/production/faace90f2c857807f562fce3fdbbe5e20ba1f9fb-2560x1706.jpg",
+            "width": 2560,
+            "height": 1706
+          }
+        },
+        "size": "half"
+      },
+      "sections": [
+        {
+          "_key": "kmh2aunw",
+          "_type": "introSection",
+          "heading": "Über Uns",
+          "lead": "In unserer Werkstatt entstehen Möbel, Küchen, Türen und Innenausbauten nach Maß. Was uns ausmacht, sind die Menschen, die Geschichte hinter dem Betrieb und eine klare Haltung zum Handwerk. Hier erfahren Sie mehr über unser Team, unseren Weg und Ihre Möglichkeiten, bei uns einzusteigen.",
+          "theme": "white"
+        },
+        {
+          "_key": "k000g",
+          "_type": "canvasSection",
+          "anchorLabel": "Team",
+          "elements": [
+            {
+              "_key": "k000ht",
+              "_type": "canvasText",
+              "align": "center",
+              "background": "none",
+              "body": [
+                {
+                  "_key": "k000i",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "k000j",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "Wir sind ein eingespieltes Team. Das bedeutet: kurze Wege, klare Verantwortung und ein persönlicher Ansprechpartner, der Ihr Projekt von Anfang bis Ende kennt. Keine anonymen Prozesse, keine wechselnden Gesichter. Sie wissen immer, mit wem Sie es zu tun haben – und wir wissen immer, worum es bei Ihnen geht."
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "normal"
+                }
+              ],
+              "column": 5,
+              "height": 4,
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 5,
+              "width": 4
+            },
+            {
+              "_key": "19stqt8b",
+              "_type": "canvasImage",
+              "column": 3,
+              "height": 3,
+              "image": {
+                "_type": "imageWithAlt",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/ab286087824896741dc8897600278aa71ca6af1b-2560x1706.jpg",
+                  "width": 2560,
+                  "height": 1706
+                }
+              },
+              "mobile": "auto",
+              "row": 2,
+              "width": 2
+            },
+            {
+              "_key": "dhmcjrgz",
+              "_type": "canvasImage",
+              "column": 7,
+              "height": 3,
+              "image": {
+                "_type": "imageWithAlt",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/23235f524cde8a4979000f7b6c8b9ee9d16acbaa-2560x1706.jpg",
+                  "width": 2560,
+                  "height": 1706
+                }
+              },
+              "mobile": "auto",
+              "row": 9,
+              "width": 2
+            },
+            {
+              "_key": "k000hi",
+              "_type": "canvasImage",
+              "column": 5,
+              "height": 4,
+              "image": {
+                "_type": "imageWithAlt",
+                "alt": "",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/97d574c95deecd394df702a05e6f44c2d56097c7-2560x1706.jpg",
+                  "width": 2560,
+                  "height": 1706
+                }
+              },
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 1,
+              "width": 4
+            },
+            {
+              "_key": "p76wc98j",
+              "_type": "canvasImage",
+              "column": 3,
+              "height": 2,
+              "image": {
+                "_type": "imageWithAlt",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/0cbe611ce8048697075e9b8aca0f4f9ccfa05994-2560x1706.jpg",
+                  "width": 2560,
+                  "height": 1706
+                }
+              },
+              "mobile": "auto",
+              "row": 8,
+              "width": 2
+            },
+            {
+              "_key": "wq116y7m",
+              "_type": "canvasImage",
+              "column": 9,
+              "height": 4,
+              "image": {
+                "_type": "imageWithAlt",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/1f596015e3ce73287ffc944406a51943e252b940-2560x1706.jpg",
+                  "width": 2560,
+                  "height": 1706
+                }
+              },
+              "mobile": "auto",
+              "row": 2,
+              "width": 2
+            },
+            {
+              "_key": "966q7m35",
+              "_type": "canvasImage",
+              "column": 2,
+              "height": 3,
+              "image": {
+                "_type": "imageWithAlt",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/13bda674f9d77662755cf7a528505e3ff2b888bc-2560x1706.jpg",
+                  "width": 2560,
+                  "height": 1706
+                }
+              },
+              "mobile": "auto",
+              "row": 5,
+              "width": 3
+            },
+            {
+              "_key": "n2k7ig7s",
+              "_type": "canvasImage",
+              "column": 9,
+              "height": 4,
+              "image": {
+                "_type": "imageWithAlt",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/d6c7210ab29d0dd389beb6696e5d1c00dde93d3f-1707x2560.jpg",
+                  "width": 1707,
+                  "height": 2560
+                }
+              },
+              "mobile": "auto",
+              "row": 6,
+              "width": 3
+            },
+            {
+              "_key": "8ayqbm5p",
+              "_type": "canvasImage",
+              "column": 5,
+              "height": 3,
+              "image": {
+                "_type": "imageWithAlt",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/cce2488214d1f9e4977d5d804e89341a0094202d-2560x1706.jpg",
+                  "width": 2560,
+                  "height": 1706
+                }
+              },
+              "mobile": "auto",
+              "row": 9,
+              "width": 2
+            }
+          ],
+          "heading": "Team",
+          "lead": "Eine gute Tischlerei ist mehr als eine Werkstatt – sie ist ein Team. Bei Steineker & Krall arbeiten Menschen, die ihr Handwerk nicht nur beherrschen, sondern lieben. Jeder bringt seine Stärken mit, ob in der Planung, in der Fertigung oder auf der Baustelle – und alle ziehen in dieselbe Richtung: ein Ergebnis, auf das alle stolz sein können.",
+          "mobileOrder": "reading",
+          "rowHeight": "medium",
+          "theme": "light"
+        },
+        {
+          "_key": "k000k",
+          "_type": "canvasSection",
+          "anchorLabel": "Geschichte",
+          "elements": [
+            {
+              "_key": "k000li",
+              "_type": "canvasImage",
+              "column": 1,
+              "height": 3,
+              "image": {
+                "_type": "imageWithAlt",
+                "alt": "",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/8e8090ffacfe935c648d93d0759465139d0d0116-2560x1706.jpg",
+                  "width": 2560,
+                  "height": 1706
+                }
+              },
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 1,
+              "width": 6
+            },
+            {
+              "_key": "k000lt",
+              "_type": "canvasText",
+              "align": "left",
+              "background": "none",
+              "body": [
+                {
+                  "_key": "k000m",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "k000n",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "Die Tischlerei wurde "
+                    },
+                    {
+                      "_key": "k000o",
+                      "_type": "span",
+                      "marks": [
+                        "strong"
+                      ],
+                      "text": "1994"
+                    },
+                    {
+                      "_key": "k000p",
+                      "_type": "span",
+                      "marks": [],
+                      "text": " gegründet – in "
+                    },
+                    {
+                      "_key": "k000q",
+                      "_type": "span",
+                      "marks": [
+                        "strong"
+                      ],
+                      "text": "Hamburg"
+                    },
+                    {
+                      "_key": "k000r",
+                      "_type": "span",
+                      "marks": [],
+                      "text": ", mit einer Handvoll Werkzeug, einem klaren Blick für Qualität und dem festen Willen, Dinge richtig zu machen. Nicht schnell. Richtig. Seitdem ist der Betrieb gewachsen – an Erfahrung, an Aufträgen, vor allem aber an Vertrauen. Viele Kunden sind seit dem ersten Auftrag dabei. Manche haben ihre Küche, ihren Einbauschrank, ihr Büroregal von Steineker & Krall – und kommen wieder, wenn der nächste Raum dran ist."
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "normal"
+                }
+              ],
+              "column": 8,
+              "height": 3,
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 1,
+              "width": 4
+            },
+            {
+              "_key": "k000si",
+              "_type": "canvasImage",
+              "column": 7,
+              "height": 3,
+              "image": {
+                "_type": "imageWithAlt",
+                "alt": "",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/c2e59b1c8f3885ca7f3917a13dde4545ce8aaebf-2560x1706.jpg",
+                  "width": 2560,
+                  "height": 1706
+                }
+              },
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 5,
+              "width": 6
+            },
+            {
+              "_key": "k000st",
+              "_type": "canvasText",
+              "align": "left",
+              "background": "none",
+              "body": [
+                {
+                  "_key": "k000t",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "k000u",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "Was Steineker & Krall bis heute auszeichnet, ist die Haltung dahinter. Kein Projekt verlässt die Werkstatt, solange es nicht sitzt. Kein Kunde bekommt eine Lösung von der Stange, wenn eine maßgefertigte besser passt. Und kein Termin wird leichtfertig zugesagt – aber wenn er steht, dann steht er. Diese Verlässlichkeit ist kein Marketingversprechen, sondern handwerkliche Grundhaltung. Sie spiegelt sich in jedem Bleistiftstrich, der den Anfang macht – und in jedem Hammerschlag, der ein Projekt abschließt."
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "normal"
+                }
+              ],
+              "column": 1,
+              "height": 3,
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 5,
+              "width": 5
+            },
+            {
+              "_key": "k000v",
+              "_type": "canvasText",
+              "align": "center",
+              "background": "none",
+              "body": [
+                {
+                  "_key": "71ndpuex",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "afc83yfi",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "„Holz ist kein Material. Holz hat Charakter. Unsere Aufgabe ist es, diesen Charakter zur Geltung zu bringen – und ihn mit dem Charakter des Raumes in Einklang zu bringen, für den wir arbeiten.“"
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "lead"
+                },
+                {
+                  "_key": "iwwa96hs",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "4n65gah9",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "— Tischlerei Steineker & Krall"
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "small"
+                }
+              ],
+              "column": 3,
+              "height": 3,
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 8,
+              "width": 8
+            },
+            {
+              "_key": "k000wi",
+              "_type": "canvasImage",
+              "column": 1,
+              "height": 3,
+              "image": {
+                "_type": "imageWithAlt",
+                "alt": "",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/4f636adbca827f13e2a581d016d38ff73c1e43ad-2560x1706.jpg",
+                  "width": 2560,
+                  "height": 1706
+                }
+              },
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 11,
+              "width": 6
+            },
+            {
+              "_key": "k000wt",
+              "_type": "canvasText",
+              "align": "left",
+              "background": "none",
+              "body": [
+                {
+                  "_key": "k000x",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "k000y",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "Ob klassisch oder modern, schlicht oder ausgefallt: Für jeden Raum gibt es eine Lösung. Manchmal ist es die naheliegende, manchmal die überraschende. Immer aber ist es die richtige – weil sie mit dem Kunden zusammen entsteht, nicht für ihn."
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "normal"
+                }
+              ],
+              "column": 8,
+              "height": 3,
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 11,
+              "width": 4
+            }
+          ],
+          "heading": "Geschichte",
+          "lead": "Es gibt Berufe, die man nicht wählt – die einen wählen. So war es bei Steineker & Krall. Beide aufgewachsen mit dem Geruch von frisch gehobeltem Holz, dem Geräusch einer anlaufenden Kreissäge, der stillen Freude darüber, dass aus einem rohen Brett etwas Bleibendes werden kann. Was als Lehrzeit und Gesellenjahre begann, wurde zur Berufung – und schließlich zum gemeinsamen Betrieb.",
+          "mobileOrder": "reading",
+          "rowHeight": "high",
+          "theme": "white"
+        },
+        {
+          "_key": "k000z",
+          "_type": "canvasSection",
+          "anchorLabel": "Karriere",
+          "elements": [
+            {
+              "_key": "k0010i",
+              "_type": "canvasImage",
+              "column": 2,
+              "height": 6,
+              "image": {
+                "_type": "imageWithAlt",
+                "alt": "",
+                "source": {
+                  "url": "https://cdn.sanity.io/images/grv0fyir/production/22b641feec97d4eaf9f65d0e6f6f72dc15bd97fb-2560x1706.jpg",
+                  "width": 2560,
+                  "height": 1706
+                }
+              },
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 1,
+              "width": 10
+            },
+            {
+              "_key": "k0010t",
+              "_type": "canvasText",
+              "align": "left",
+              "background": "none",
+              "body": [
+                {
+                  "_key": "k0011",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "k0012",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "Aktuell haben wir keine ausgeschriebene Stelle – aber wir sind immer offen für Menschen, die überzeugen. Ob Geselle, Meister oder Auszubildender am Anfang des Weges: Schreiben Sie uns. Eine kurze, ehrliche Nachricht reicht."
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "normal"
+                },
+                {
+                  "_key": "k0013",
+                  "_type": "block",
+                  "children": [
+                    {
+                      "_key": "k0014",
+                      "_type": "span",
+                      "marks": [],
+                      "text": "Was Sie bei uns erwartet: ein kleines Team, in dem jeder zählt. Projekte, die abwechslungsreich sind. Und ein Chef, der selbst noch in der Werkstatt steht."
+                    }
+                  ],
+                  "markDefs": [],
+                  "style": "normal"
+                }
+              ],
+              "column": 2,
+              "height": 2,
+              "mobile": "auto",
+              "parallax": 0,
+              "row": 7,
+              "width": 10
+            }
+          ],
+          "heading": "Karriere",
+          "lead": "Wir wachsen nicht um des Wachstums willen. Aber wenn jemand zu uns passt – wirklich passt – dann freuen wir uns über Verstärkung. Was uns wichtig ist: Handwerk mit Haltung. Wer Spaß am Material hat, wer sorgfältig arbeitet und wer Wert auf ein kollegiales Miteinander legt, ist bei Steineker & Krall richtig.",
+          "mobileOrder": "reading",
+          "rowHeight": "high",
+          "theme": "light"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "ueber-uns"
+      },
+      "title": "Über Uns"
+    }
+  ]
+}

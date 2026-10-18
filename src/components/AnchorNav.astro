@@ -1,0 +1,24 @@
+---
+interface Props {
+  anchors?: {id: string; label: string}[]
+  class?: string
+}
+
+const {anchors = [], class: className} = Astro.props
+---
+
+{
+  anchors.length > 1 && (
+    <nav aria-label="Bereiche dieser Seite" class={className} data-reveal data-anchor-nav>
+      <ul class="flex flex-wrap justify-center gap-x-8 gap-y-2">
+        {anchors.map((anchor) => (
+          <li>
+            <a href={`#${anchor.id}`} class="link-underline">
+              {anchor.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}

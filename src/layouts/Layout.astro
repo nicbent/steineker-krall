@@ -1,0 +1,106 @@
+---
+import '../styles/global.css'
+import ContactPanel from '../components/ContactPanel.astro'
+import CookieConsent from '../components/CookieConsent.astro'
+import Footer from '../components/Footer.astro'
+import Header from '../components/Header.astro'
+import {getContent, type Settings} from '../lib/content'
+import {smoothScrollLerp} from '../lib/smoothScroll'
+
+interface Props {
+  settings: Settings
+  title?: string
+  description?: string
+  headerTone: 'light' | 'dark'
+  anchors?: {id: string; label: string}[]
+}
+
+const {settings, title, description = settings.description, headerTone, anchors} = Astro.props
+const {consent} = await getContent()
+const lerp = smoothScrollLerp(settings.smoothScroll)
+const fullTitle = title ? `${title} – ${settings.title}` : settings.title
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    {description && <meta name="description" content={description} />}
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/sk_logo_black.svg" />
+    <!-- Vor dem ersten Rendern setzen, damit einzublendende Elemente nicht kurz aufblitzen -->
+    <script is:inline>document.documentElement.classList.add('js')</script>
+  </head>
+  <body data-smooth-lerp={lerp}>
+    <a href="#inhalt" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:p-3 focus:text-ink">
+      Zum Inhalt springen
+    </a>
+    <Header settings={settings} tone={headerTone} anchors={anchors} />
+    <main id="inhalt">
+      <slot />
+    </main>
+    <Footer settings={settings} />
+    {settings.contactPanel && <ContactPanel panel={settings.contactPanel} />}
+    <CookieConsent consent={consent} />
+
+    <script>
+      import Lenis from 'lenis'
+
+      // Smooth-Scrolling für Mausrad und Trackpad, Stärke aus den Website-Einstellungen (0 = aus).
+      // Touch bleibt nativ; aus bei „Bewegung reduzieren“.
+      const lerp = Number(document.body.dataset.smoothLerp)
+      if (lerp > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const lenis = new Lenis({lerp, smoothWheel: true, syncTouch: false})
+        const raf = (time: number) => {
+          lenis.raf(time)
+          requestAnimationFrame(raf)
+        }
+        requestAnimationFrame(raf)
+
+        // Kontakt-Panel und mobiles Menü sperren die Seite über die Klasse overflow-hidden: dann anhalten
+        new MutationObserver(() =>
+          document.documentElement.classList.contains('overflow-hidden') ? lenis.stop() : lenis.start(),
+        ).observe(document.documentElement, {attributes: true, attributeFilter: ['class']})
+
+        // Anker auf derselben Seite weich anfahren; Lenis beachtet dabei scroll-margin-top (Abstand unter dem Header)
+        document.addEventListener('click', (event) => {
+          if (event.defaultPrevented) return
+          const link = (event.target as HTMLElement).closest<HTMLAnchorElement>('a[href*="#"]')
+          if (!link) return
+          const url = new URL(link.href, location.href)
+          if (url.pathname !== location.pathname || !url.hash || url.hash === '#kontakt') return
+          const target = document.getElementById(decodeURIComponent(url.hash.slice(1)))
+          if (!target) return
+          event.preventDefault()
+          lenis.scrollTo(target)
+          history.pushState(null, '', url.hash)
+        })
+      }
+    </script>
+
+    <script>
+      // Blendet Elemente mit data-reveal ein, sobald ihr oberer Rand 15 % über dem unteren Fensterrand liegt.
+      // Was gleichzeitig ins Bild kommt, erscheint in Lesereihenfolge um je 100 ms versetzt (höchstens 5 Stufen).
+      const STEP = 100
+      const MAX_STEPS = 5
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries
+            .filter((entry) => entry.isIntersecting)
+            .map((entry) => ({el: entry.target as HTMLElement, rect: entry.boundingClientRect}))
+            .sort((a, b) => a.rect.top - b.rect.top || a.rect.left - b.rect.left)
+            .forEach(({el}, i) => {
+              el.style.transitionDelay = `${Math.min(i, MAX_STEPS) * STEP}ms`
+              el.classList.add('is-visible')
+              observer.unobserve(el)
+            })
+        },
+        {rootMargin: '0px 0px -15% 0px'},
+      )
+      document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el))
+    </script>
+  </body>
+</html>

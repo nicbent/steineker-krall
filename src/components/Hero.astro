@@ -1,0 +1,60 @@
+---
+import type {Page} from '../lib/content'
+import {heroOverlay} from '../lib/heroOverlay'
+import Img from './Img.astro'
+
+interface Props {
+  hero: NonNullable<Page['hero']>
+  /** Hat die Seite ein Intro, trägt dieses die H1; der Hero-Titel wird dann kein H1 */
+  titleTag?: 'h1' | 'p'
+}
+
+const {hero, titleTag = 'h1'} = Astro.props
+const Title = titleTag
+const full = hero.size === 'full'
+const hasText = Boolean(hero.title || hero.eyebrow)
+const overlay = heroOverlay(hero.overlay)
+---
+
+<section data-tone="dark" class:list={['relative flex items-end overflow-hidden bg-ink text-white', full ? 'min-h-svh' : 'min-h-[50svh]']}>
+  {hero.image && <Img image={hero.image} eager class="absolute inset-0 h-full w-full object-cover" />}
+  {
+    // Abdunklung aus dem Studio: Grundton über dem ganzen Bild, dazu ein Verlauf von unten (nur mit Text)
+    (overlay.base > 0 || (hasText && overlay.bottom > 0)) && (
+      <div
+        class="hero-overlay absolute inset-0"
+        style={`--base: ${overlay.base}; --bottom: ${hasText ? overlay.bottom : 0}`}
+        aria-hidden="true"
+      />
+    )
+  }
+  {
+    hasText && (
+      <>
+        {/* Gleicher Seitenabstand wie Logo und Menü im Header */}
+        <div class="relative w-full px-4 pb-12 lg:px-[3vw] lg:pb-16">
+          {hero.eyebrow && <p class="text-lead" data-reveal>{hero.eyebrow}</p>}
+          {hero.title && (
+            <Title class="hero-title mt-2 max-w-4xl font-bold text-balance" data-reveal>
+              {hero.title}
+            </Title>
+          )}
+        </div>
+      </>
+    )
+  }
+</section>
+
+<style>
+  .hero-overlay {
+    background:
+      linear-gradient(to top, rgb(29 27 27 / var(--bottom)) 0%, rgb(29 27 27 / calc(var(--bottom) * 0.2)) 55%, transparent 100%),
+      rgb(29 27 27 / var(--base));
+  }
+  /* Größer als die H1-Stufe der Skala: Der Titel ist die Aussage der Seite */
+  .hero-title {
+    font-size: clamp(1.75rem, 1.1rem + 2.4vw, 3.25rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+</style>

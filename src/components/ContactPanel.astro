@@ -1,0 +1,176 @@
+---
+import {PortableText} from 'astro-portabletext'
+import PtLink from './PtLink.astro'
+import type {Settings} from '../lib/content'
+import Img from './Img.astro'
+
+interface Props {
+  panel: NonNullable<Settings['contactPanel']>
+}
+
+const {panel} = Astro.props
+---
+
+<!--
+  Kontakt-Panel: öffnet sich bei jedem Link auf "#kontakt" (auch "/#kontakt") und beim Aufruf mit #kontakt.
+  Als modaler <dialog>: Fokus bleibt im Panel, Escape schließt, die Seite dahinter ist nicht bedienbar.
+-->
+<dialog id="kontakt" class="contact-panel" aria-labelledby="kontakt-titel" tabindex="-1" autofocus data-contact-panel>
+  <div class="contact-panel__backdrop" data-contact-close></div>
+
+  <div class="contact-panel__sheet theme-white flex flex-col" data-lenis-prevent>
+    <div class="flex items-center justify-between px-6 py-5 lg:px-8">
+      <h2 id="kontakt-titel" class="text-h3">{panel.title || 'Kontakt'}</h2>
+      <button type="button" class="-mr-2 flex h-11 w-11 items-center justify-center" aria-label="Kontakt schließen" data-contact-close data-contact-focus>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M2 2l16 16M18 2L2 18"></path>
+        </svg>
+      </button>
+    </div>
+
+    {
+      panel.groups?.map((group) => (
+        <section class:list={['border-t border-ink/15 px-6 py-6 lg:px-8', group.highlight && 'border-transparent bg-mist']}>
+          {group.title && <h4>{group.title}</h4>}
+          <div class="rich-text contact-panel__body mt-3">
+            <PortableText value={group.body ?? []} components={{mark: {link: PtLink}}} />
+          </div>
+        </section>
+      ))
+    }
+
+    {
+      panel.image && (
+        // Füllt den Rest bis zum unteren Rand; ist wenig Platz, bleibt es mindestens 12rem hoch und das Panel scrollt
+        <div class="relative min-h-48 flex-1">
+          <Img image={panel.image} sizes="(min-width: 40rem) 30rem, 100vw" class="absolute inset-0 h-full w-full object-cover" />
+        </div>
+      )
+    }
+  </div>
+</dialog>
+
+<style>
+  .contact-panel {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    /* clip statt hidden: Der Dialog darf kein Scroll-Container sein, sonst verschiebt der Browser ihn beim
+       Fokussieren, um den noch außerhalb liegenden Inhalt sichtbar zu machen */
+    overflow: clip;
+    outline: none;
+  }
+  .contact-panel::backdrop {
+    background: transparent;
+  }
+
+  .contact-panel__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgb(255 255 255 / 0.6);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .contact-panel__sheet {
+    position: absolute;
+    inset-block: 0;
+    right: 0;
+    width: min(100%, 30rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    transform: translateX(100%);
+    box-shadow: -12px 0 40px -8px rgb(29 27 27 / 0.12);
+    transition: transform 0.5s var(--ease-reveal);
+  }
+
+  .contact-panel.is-open .contact-panel__backdrop {
+    opacity: 1;
+  }
+  .contact-panel.is-open .contact-panel__sheet {
+    transform: none;
+  }
+
+  /* Links im Panel ohne Unterstreichung, wie Text; erst beim Hover */
+  .contact-panel__body :global(a) {
+    text-decoration: none;
+  }
+  .contact-panel__body :global(a:hover) {
+    text-decoration: underline;
+    opacity: 1;
+  }
+  .contact-panel__body :global(p + p) {
+    margin-top: 0.75em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-panel__backdrop,
+    .contact-panel__sheet {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('[data-contact-panel]')
+
+  if (dialog) {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let opener: HTMLElement | null = null
+
+    const open = () => {
+      if (dialog.open) return
+      opener = document.activeElement as HTMLElement | null
+      // Mobiles Menü schließen, falls der Klick von dort kam
+      document.dispatchEvent(new CustomEvent('contact-panel:open'))
+      dialog.showModal()
+      document.documentElement.classList.add('overflow-hidden')
+      // Ausgangslage (rechts außerhalb) einmal berechnen lassen, damit die Einfahr-Animation sicher startet
+      void dialog.offsetWidth
+      dialog.classList.add('is-open')
+      dialog.querySelector<HTMLElement>('[data-contact-focus]')?.focus({preventScroll: true})
+    }
+
+    const close = () => {
+      if (!dialog.open) return
+      dialog.classList.remove('is-open')
+      const finish = () => {
+        dialog.close()
+        document.documentElement.classList.remove('overflow-hidden')
+        if (location.hash === '#kontakt') history.replaceState(null, '', location.pathname + location.search)
+        opener?.focus()
+      }
+      if (reduceMotion.matches) finish()
+      else setTimeout(finish, 500)
+    }
+
+    document.addEventListener('click', (event) => {
+      const link = (event.target as HTMLElement).closest<HTMLAnchorElement>('a[href]')
+      if (link) {
+        const url = new URL(link.href, location.href)
+        if (url.hash === '#kontakt' && url.pathname === location.pathname) {
+          event.preventDefault()
+          open()
+          return
+        }
+      }
+      if ((event.target as HTMLElement).closest('[data-contact-close]')) close()
+    })
+
+    // Escape: Schließen mit Animation statt sofort
+    dialog.addEventListener('cancel', (event) => {
+      event.preventDefault()
+      close()
+    })
+
+    if (location.hash === '#kontakt') open()
+  }
+</script>

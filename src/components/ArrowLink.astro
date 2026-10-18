@@ -1,0 +1,24 @@
+---
+import type {Link} from '../lib/content'
+
+interface Props {
+  link?: Link
+}
+
+const {link} = Astro.props
+---
+
+{
+  link?.href && link.label && (
+    <p class="mt-5" data-reveal>
+      <a
+        href={link.href}
+        class="link-underline"
+        target={link.blank ? '_blank' : undefined}
+        rel={link.blank ? 'noopener noreferrer' : undefined}
+      >
+        {link.label} <span aria-hidden="true">→</span>
+      </a>
+    </p>
+  )
+}

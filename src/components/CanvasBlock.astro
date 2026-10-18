@@ -1,0 +1,10 @@
+---
+// Ein Absatz im Text-Element der Freien Fläche: Tag und Größe folgen dem im Studio gewählten Format
+import {canvasTextStyle} from '../lib/canvas'
+
+const {node} = Astro.props
+const style = canvasTextStyle(node.style)
+const Tag = style.tag
+---
+
+<Tag class={`canvas-block ${style.className}`} data-reveal><slot /></Tag>
