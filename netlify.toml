@@ -1,0 +1,11 @@
+# Build-Einstellungen für Netlify
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Sanity-Projekt (keine Geheimnisse: die ID steht ohnehin in jeder Bildadresse).
+  # Ohne Projekt-ID baut Astro kein Studio unter /studio und nutzt nur die Seed-Daten.
+  PUBLIC_SANITY_PROJECT_ID = "grv0fyir"
+  PUBLIC_SANITY_DATASET = "production"
+  NODE_VERSION = "22"
