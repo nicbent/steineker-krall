@@ -46,6 +46,14 @@ export const page = defineType({
         }),
         defineField({name: 'image', title: 'Bild', type: 'imageWithAlt', hidden: ({parent}) => parent?.size === 'none'}),
         defineField({
+          name: 'video',
+          title: 'Video',
+          type: 'file',
+          description: 'Optional, MP4 ohne Ton. Läuft stumm in Endlosschleife statt des Bildes; das Bild dient als Vorschaubild.',
+          options: {accept: 'video/mp4'},
+          hidden: ({parent}) => parent?.size === 'none',
+        }),
+        defineField({
           name: 'overlay',
           title: 'Abdunklung',
           type: 'string',

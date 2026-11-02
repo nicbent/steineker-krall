@@ -57,7 +57,7 @@ const anchors = page.anchorNav
   : []
 const navHosts = ['introSection', 'canvasSection']
 const navInFirstSection = navHosts.includes(sections[0]?._type)
-const hasHero = Boolean(page.hero?.image) && page.hero?.size !== 'none'
+const hasHero = Boolean(page.hero?.image || page.hero?.video) && page.hero?.size !== 'none'
 // Helligkeit der Fläche unter dem Header beim Aufruf, damit die Farbe schon vor dem Skript stimmt
 const headerTone = hasHero || sections[0]?._type === 'bannerSection' ? 'dark' : 'light'
 const isHome = page.slug === 'home'
@@ -78,7 +78,7 @@ const hasIntro = sections.some((section) => section._type === 'introSection')
           class:list={[section._type === 'gallerySection' ? 'scroll-mt-32' : 'scroll-mt-10']}
         >
           {i === 0 && !navInFirstSection && <AnchorNav anchors={anchors} class="container pt-16" />}
-          <Component {...section} settings={settings} anchors={i === 0 ? anchors : undefined} />
+          <Component {...section} settings={settings} anchors={i === 0 ? anchors : undefined} first={i === 0 && !hasHero} />
         </div>
       )
     })

@@ -28,9 +28,9 @@ const tel = settings.phone?.replace(/\(0\)|[^\d+]/g, '')
         </p>
       )
     }
-    <p class="lg:max-w-[13em]">
+    <p class="lg:max-w-[16em]">
       Kontakt<br />
-      {settings.phone && <>Telefon: <a href={`tel:${tel}`} class="hover:underline">{settings.phone}</a><br /></>}
+      {settings.phone && <><span class="whitespace-nowrap">Telefon: <a href={`tel:${tel}`} class="hover:underline">{settings.phone}</a></span><br /></>}
       {settings.email && <>E-Mail: <a href={`mailto:${settings.email}`} class="hover:underline">{settings.email}</a></>}
     </p>
     <p>

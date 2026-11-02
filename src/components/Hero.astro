@@ -19,6 +19,21 @@ const overlay = heroOverlay(hero.overlay)
 <section data-tone="dark" class:list={['relative flex items-end overflow-hidden bg-ink text-white', full ? 'min-h-svh' : 'min-h-[50svh]']}>
   {hero.image && <Img image={hero.image} eager class="absolute inset-0 h-full w-full object-cover" />}
   {
+    // Video über dem Bild; das Bild bleibt Vorschau und Ersatz bei „Bewegung reduzieren“
+    hero.video && (
+      <video
+        class="hero-video absolute inset-0 h-full w-full object-cover"
+        src={hero.video}
+        poster={hero.image?.url}
+        autoplay
+        muted
+        loop
+        playsinline
+        aria-hidden="true"
+      />
+    )
+  }
+  {
     // Abdunklung aus dem Studio: Grundton über dem ganzen Bild, dazu ein Verlauf von unten (nur mit Text)
     (overlay.base > 0 || (hasText && overlay.bottom > 0)) && (
       <div
@@ -46,6 +61,11 @@ const overlay = heroOverlay(hero.overlay)
 </section>
 
 <style>
+  @media (prefers-reduced-motion: reduce) {
+    .hero-video {
+      display: none;
+    }
+  }
   .hero-overlay {
     background:
       linear-gradient(to top, rgb(29 27 27 / var(--bottom)) 0%, rgb(29 27 27 / calc(var(--bottom) * 0.2)) 55%, transparent 100%),

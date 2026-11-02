@@ -10,13 +10,18 @@ interface Props {
   align?: 'left' | 'center'
   backgroundImage?: SiteImage
   backgroundVideo?: string
+  /** Erster Abschnitt ohne Kopfbereich: Banner füllt den Bildschirm wie ein Hero */
+  first?: boolean
 }
 
-const {heading, lead, link, align = 'left', backgroundImage, backgroundVideo} = Astro.props
+const {heading, lead, link, align = 'left', backgroundImage, backgroundVideo, first = false} = Astro.props
 ---
 
 <!-- Teaser über die volle Breite: Bild oder Video, abgedunkelt, darauf Überschrift, Text und Link -->
-<section data-tone="dark" class="theme-dark relative flex min-h-[26rem] items-center overflow-hidden py-24 lg:min-h-[41vw]">
+<section
+  data-tone="dark"
+  class:list={['theme-dark relative flex items-center overflow-hidden py-24', first ? 'min-h-svh' : 'min-h-[26rem] lg:min-h-[41vw]']}
+>
   {
     backgroundVideo ? (
       <video
@@ -30,7 +35,7 @@ const {heading, lead, link, align = 'left', backgroundImage, backgroundVideo} = 
         aria-hidden="true"
       />
     ) : (
-      backgroundImage && <Img image={backgroundImage} class="absolute inset-0 h-full w-full object-cover" />
+      backgroundImage && <Img image={backgroundImage} eager={first} class="absolute inset-0 h-full w-full object-cover" />
     )
   }
   <div class="absolute inset-0 bg-ink/45"></div>
