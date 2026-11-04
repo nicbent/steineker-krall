@@ -34,6 +34,8 @@ export const page = defineType({
           name: 'size',
           title: 'Höhe',
           type: 'string',
+          description:
+            'Bei „Kein Kopfbild“ beginnt die Seite mit dem ersten Abschnitt. Ist das ein Banner, werden Bild und Video dort eingestellt.',
           options: {
             list: [
               {title: 'Volle Bildschirmhöhe', value: 'full'},
@@ -72,7 +74,37 @@ export const page = defineType({
           title: 'Titel',
           type: 'text',
           rows: 2,
-          description: 'Steht groß unten links im Bild. Hat die Seite kein Intro, ist er die H1 der Seite.',
+          description: 'Steht groß im Bild (unten links oder mittig). Hat die Seite kein Intro, ist er die H1 der Seite.',
+          hidden: ({parent}) => parent?.size === 'none',
+        }),
+        defineField({
+          name: 'lead',
+          title: 'Text',
+          type: 'text',
+          rows: 3,
+          description: 'Optional, steht unter dem Titel.',
+          hidden: ({parent}) => parent?.size === 'none',
+        }),
+        defineField({
+          name: 'link',
+          title: 'Link',
+          type: 'link',
+          description: 'Optional, steht unter dem Titel bzw. Text.',
+          hidden: ({parent}) => parent?.size === 'none',
+        }),
+        defineField({
+          name: 'align',
+          title: 'Position des Titels',
+          type: 'string',
+          options: {
+            list: [
+              {title: 'Unten links', value: 'bottom'},
+              {title: 'Mittig', value: 'center'},
+            ],
+            layout: 'radio',
+            direction: 'horizontal',
+          },
+          initialValue: 'bottom',
           hidden: ({parent}) => parent?.size === 'none',
         }),
       ],

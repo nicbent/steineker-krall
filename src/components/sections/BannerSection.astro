@@ -26,12 +26,13 @@ const {heading, lead, link, align = 'left', backgroundImage, backgroundVideo, fi
     backgroundVideo ? (
       <video
         class="absolute inset-0 h-full w-full object-cover"
-        src={backgroundVideo}
+        data-src={backgroundVideo}
         poster={backgroundImage?.url}
-        autoplay
         muted
         loop
         playsinline
+        preload="none"
+        data-lazy-video
         aria-hidden="true"
       />
     ) : (

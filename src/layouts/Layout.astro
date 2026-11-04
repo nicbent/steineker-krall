@@ -82,6 +82,39 @@ const fullTitle = title ? `${title} – ${settings.title}` : settings.title
     </script>
 
     <script>
+      // Alle Videos (Kopfbereich, Banner, Freie Fläche): laden, sobald sie in die Nähe kommen, abspielen nur solange sichtbar.
+      // Bei „Bewegung reduzieren“ bleibt das Vorschaubild stehen (bzw. das erste Bild des Videos).
+      const videos = [...document.querySelectorAll<HTMLVideoElement>('[data-lazy-video]')]
+      if (videos.length) {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)')
+        const load = (video: HTMLVideoElement) => {
+          if (!video.src && video.dataset.src) {
+            video.src = video.dataset.src
+            if (reduce.matches && !video.poster) video.preload = 'metadata'
+          }
+        }
+        const nearby = new IntersectionObserver(
+          (entries) => entries.forEach((entry) => entry.isIntersecting && (load(entry.target as HTMLVideoElement), nearby.unobserve(entry.target))),
+          {rootMargin: '400px 0px'},
+        )
+        const visible = new IntersectionObserver((entries) =>
+          entries.forEach((entry) => {
+            const video = entry.target as HTMLVideoElement
+            if (entry.isIntersecting && !reduce.matches) {
+              load(video)
+              video.play().catch(() => {})
+            } else video.pause()
+          }),
+        )
+        videos.forEach((video) => {
+          nearby.observe(video)
+          visible.observe(video)
+        })
+        reduce.addEventListener('change', () => videos.forEach((video) => reduce.matches && video.pause()))
+      }
+    </script>
+
+    <script>
       // Blendet Elemente mit data-reveal ein, sobald ihr oberer Rand 15 % über dem unteren Fensterrand liegt.
       // Was gleichzeitig ins Bild kommt, erscheint in Lesereihenfolge um je 100 ms versetzt (höchstens 5 Stufen).
       const STEP = 100

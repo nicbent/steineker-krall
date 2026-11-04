@@ -1,6 +1,7 @@
 ---
 import type {Page} from '../lib/content'
 import {heroOverlay} from '../lib/heroOverlay'
+import ArrowLink from './ArrowLink.astro'
 import Img from './Img.astro'
 
 interface Props {
@@ -12,33 +13,45 @@ interface Props {
 const {hero, titleTag = 'h1'} = Astro.props
 const Title = titleTag
 const full = hero.size === 'full'
-const hasText = Boolean(hero.title || hero.eyebrow)
+const center = hero.align === 'center'
+const hasText = Boolean(hero.title || hero.eyebrow || hero.lead || (hero.link?.href && hero.link.label))
 const overlay = heroOverlay(hero.overlay)
+// Mittiger Text: gleichmäßige Abdunklung statt Verlauf von unten (bei „Stark“ etwa wie beim Banner)
+const base = center && hasText ? Math.max(overlay.base, overlay.bottom * 0.6) : overlay.base
+const bottom = center || !hasText ? 0 : overlay.bottom
 ---
 
-<section data-tone="dark" class:list={['relative flex items-end overflow-hidden bg-ink text-white', full ? 'min-h-svh' : 'min-h-[50svh]']}>
+<section
+  data-tone="dark"
+  class:list={[
+    'relative flex overflow-hidden bg-ink text-white',
+    center ? 'items-center' : 'items-end',
+    full ? 'min-h-svh' : 'min-h-[50svh]',
+  ]}
+>
   {hero.image && <Img image={hero.image} eager class="absolute inset-0 h-full w-full object-cover" />}
   {
     // Video über dem Bild; das Bild bleibt Vorschau und Ersatz bei „Bewegung reduzieren“
     hero.video && (
       <video
         class="hero-video absolute inset-0 h-full w-full object-cover"
-        src={hero.video}
+        data-src={hero.video}
         poster={hero.image?.url}
-        autoplay
         muted
         loop
         playsinline
+        preload="none"
+        data-lazy-video
         aria-hidden="true"
       />
     )
   }
   {
     // Abdunklung aus dem Studio: Grundton über dem ganzen Bild, dazu ein Verlauf von unten (nur mit Text)
-    (overlay.base > 0 || (hasText && overlay.bottom > 0)) && (
+    (base > 0 || bottom > 0) && (
       <div
         class="hero-overlay absolute inset-0"
-        style={`--base: ${overlay.base}; --bottom: ${hasText ? overlay.bottom : 0}`}
+        style={`--base: ${base}; --bottom: ${bottom}`}
         aria-hidden="true"
       />
     )
@@ -47,13 +60,19 @@ const overlay = heroOverlay(hero.overlay)
     hasText && (
       <>
         {/* Gleicher Seitenabstand wie Logo und Menü im Header */}
-        <div class="relative w-full px-4 pb-12 lg:px-[3vw] lg:pb-16">
+        <div class:list={['relative w-full px-4 lg:px-[3vw]', center ? 'py-24 text-center' : 'pb-12 lg:pb-16']}>
           {hero.eyebrow && <p class="text-lead" data-reveal>{hero.eyebrow}</p>}
           {hero.title && (
-            <Title class="hero-title mt-2 max-w-4xl font-bold text-balance" data-reveal>
+            <Title class:list={['hero-title mt-2 max-w-4xl font-bold text-balance', center && 'mx-auto']} data-reveal>
               {hero.title}
             </Title>
           )}
+          {hero.lead && (
+            <p class:list={['mt-4 max-w-2xl text-lead text-balance', center && 'mx-auto']} data-reveal>
+              {hero.lead}
+            </p>
+          )}
+          <ArrowLink link={hero.link} />
         </div>
       </>
     )

@@ -58,7 +58,17 @@ export interface Page {
   slug: string
   description?: string
   anchorNav?: boolean
-  hero?: {size?: 'full' | 'half' | 'none'; image?: SiteImage; video?: string; eyebrow?: string; title?: string; overlay?: string}
+  hero?: {
+    size?: 'full' | 'half' | 'none'
+    image?: SiteImage
+    video?: string
+    eyebrow?: string
+    title?: string
+    lead?: string
+    link?: Link
+    align?: 'bottom' | 'center'
+    overlay?: string
+  }
   sections?: Section[]
 }
 

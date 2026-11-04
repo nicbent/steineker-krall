@@ -36,12 +36,15 @@ interface Props {
   rowHeight?: string
   theme?: 'white' | 'light'
   mobileOrder?: 'reading' | 'grouped' | 'custom'
+  mobileGap?: 'none' | 'small' | 'medium'
   mobileSequence?: string[]
   elements?: Element[]
 }
 
-const {heading, lead, anchors, rowHeight, theme = 'white', mobileOrder = 'reading', mobileSequence = [], elements = []} = Astro.props
+const {heading, lead, anchors, rowHeight, theme = 'white', mobileOrder = 'reading', mobileSequence = [], mobileGap = 'small', elements = []} = Astro.props
 const factor = rowFactor(rowHeight)
+// Abstand zwischen den Elementen auf dem Handy (auf dem Desktop bestimmt das Raster die Abstände)
+const gap = {none: '0', small: '0.5rem', medium: '1rem'}[mobileGap] ?? '0.5rem'
 
 // Vorne liegt, was in der Liste weiter oben steht. Auf dem Handy entweder in Lesereihenfolge (Zeile, dann Spalte)
 // der Desktop-Anordnung oder gruppiert: erste Hälfte der Bilder, dann die Texte, dann die übrigen Bilder.
@@ -104,7 +107,7 @@ const rows = usedRows(items.map((item) => item.area))
       )
     }
     <div class="canvas-frame">
-    <div class="canvas" style={`--rows: ${rows}; --row-factor: ${factor}`}>
+    <div class="canvas" style={`--rows: ${rows}; --row-factor: ${factor}; --mobile-gap: ${gap}`}>
       {
         // Unsichtbare Abstandshalter: geben jeder Zeile ihre Mindesthöhe (nur Desktop)
         Array.from({length: rows}, (_, i) => <span class="canvas-spacer" style={`grid-row: ${i + 1}`} aria-hidden="true" />)
@@ -144,7 +147,7 @@ const rows = usedRows(items.map((item) => item.area))
                   preload="none"
                   aria-label={item.label || undefined}
                   aria-hidden={item.label ? undefined : 'true'}
-                  data-canvas-video
+                  data-lazy-video
                 />
               </div>
             )
@@ -198,6 +201,7 @@ const rows = usedRows(items.map((item) => item.area))
   .canvas {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: var(--mobile-gap);
   }
   .element {
     order: var(--mobile-order);
@@ -268,6 +272,7 @@ const rows = usedRows(items.map((item) => item.area))
     .canvas {
       grid-template-columns: repeat(12, minmax(0, 1fr));
       grid-template-rows: repeat(var(--rows), auto);
+      gap: 0;
     }
     .canvas-spacer {
       display: block;
@@ -313,37 +318,6 @@ const rows = usedRows(items.map((item) => item.area))
 </style>
 
 <script>
-  // Videos in der Fläche: laden, sobald sie in die Nähe kommen, abspielen nur solange sichtbar.
-  // Bei „Bewegung reduzieren“ bleibt das Vorschaubild stehen (bzw. das erste Bild des Videos).
-  const videos = [...document.querySelectorAll<HTMLVideoElement>('[data-canvas-video]')]
-  if (videos.length) {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const load = (video: HTMLVideoElement) => {
-      if (!video.src && video.dataset.src) {
-        video.src = video.dataset.src
-        if (reduce.matches && !video.poster) video.preload = 'metadata'
-      }
-    }
-    const nearby = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => entry.isIntersecting && (load(entry.target as HTMLVideoElement), nearby.unobserve(entry.target))),
-      {rootMargin: '400px 0px'},
-    )
-    const visible = new IntersectionObserver((entries) =>
-      entries.forEach((entry) => {
-        const video = entry.target as HTMLVideoElement
-        if (entry.isIntersecting && !reduce.matches) {
-          load(video)
-          video.play().catch(() => {})
-        } else video.pause()
-      }),
-    )
-    videos.forEach((video) => {
-      nearby.observe(video)
-      visible.observe(video)
-    })
-    reduce.addEventListener('change', () => videos.forEach((video) => reduce.matches && video.pause()))
-  }
-
   // Parallax: Elemente mit data-parallax (Faktor) verschieben sich proportional zu ihrem Abstand zur Fenstermitte.
   // Nur auf dem Desktop und ohne „Bewegung reduzieren“.
   const elements = [...document.querySelectorAll<HTMLElement>('[data-parallax]')]

@@ -301,6 +301,22 @@ const canvasSection = defineType({
       initialValue: 'medium',
     }),
     defineField({
+      name: 'mobileGap',
+      title: 'Abstand auf dem Handy',
+      type: 'string',
+      description: 'Abstand zwischen den Elementen, wenn sie auf dem Handy untereinander und nebeneinander stehen.',
+      options: {
+        list: [
+          {title: 'Kein', value: 'none'},
+          {title: 'Klein', value: 'small'},
+          {title: 'Mittel', value: 'medium'},
+        ],
+        layout: 'radio',
+        direction: 'horizontal',
+      },
+      initialValue: 'small',
+    }),
+    defineField({
       name: 'mobileOrder',
       title: 'Reihenfolge auf dem Handy',
       type: 'string',

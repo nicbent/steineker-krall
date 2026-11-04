@@ -11,6 +11,9 @@ const {PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET} = process.env
 export default defineConfig({
   // Die frühere Kontaktseite: Kontakt ist jetzt ein Panel, das sich über #kontakt öffnet
   redirects: {'/kontakt': '/#kontakt'},
+  // Die Dev-Toolbar lädt ihre Module erst beim ersten Seitenaufruf nach; Vite bündelt dann neu und ein offener
+  // Studio-Tab stürzt ab (siehe optimizeDeps unten). Sie wird hier nicht gebraucht.
+  devToolbar: {enabled: false},
   integrations: [
     react(),
     // Ohne Projekt-ID gibt es kein Studio; das Frontend nutzt dann seed/content.json
@@ -34,6 +37,7 @@ export default defineConfig({
         'sanity/structure',
         '@sanity/vision',
         'sanity-plugin-media',
+        '@astrojs/react/client.js',
         'react',
         'react-dom',
         'react-dom/client',
