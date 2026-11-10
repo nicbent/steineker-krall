@@ -1,7 +1,7 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 import {CANVAS_ROW_HEIGHTS, CANVAS_TEXT_STYLES} from '../../lib/canvas'
 import {CanvasInput} from '../components/CanvasEditor'
-import {headingField, leadField, linkAnnotation} from './shared'
+import {headingField, leadField, linkAnnotation, videoField} from './shared'
 
 const linkField = defineField({name: 'link', title: 'Link', type: 'link'})
 
@@ -77,13 +77,7 @@ const bannerSection = defineType({
       description: 'Hintergrundbild; bei einem Video das Vorschaubild.',
       validation: (rule) => rule.required(),
     }),
-    defineField({
-      name: 'backgroundVideo',
-      title: 'Video',
-      type: 'file',
-      description: 'Optional, MP4 ohne Ton.',
-      options: {accept: 'video/mp4'},
-    }),
+    videoField('backgroundVideo', 'Optional, ersetzt das Bild.'),
   ],
   preview: {select: {title: 'heading', media: 'backgroundImage'}, prepare: (value) => ({...value, subtitle: 'Banner'})},
 })
@@ -93,8 +87,12 @@ const bannerSection = defineType({
 const areaFields = ['column', 'row', 'width', 'height'].map((name) =>
   defineField({name, type: 'number', hidden: true, initialValue: name === 'width' || name === 'height' ? 3 : 1}),
 )
+// Seltener gebrauchte Gestaltungsfelder stehen eingeklappt unter „Layout-Optionen“
+const layoutFieldset = {name: 'layout', title: 'Layout-Optionen', options: {collapsible: true, collapsed: true}}
+
 const mobileField = defineField({
   name: 'mobile',
+  fieldset: 'layout',
   title: 'Auf dem Handy',
   type: 'string',
   options: {
@@ -111,6 +109,7 @@ const mobileField = defineField({
 })
 const parallaxField = defineField({
   name: 'parallax',
+  fieldset: 'layout',
   title: 'Parallax',
   type: 'number',
   description:
@@ -135,6 +134,7 @@ const canvasImage = defineType({
   name: 'canvasImage',
   title: 'Bild',
   type: 'object',
+  fieldsets: [layoutFieldset],
   fields: [
     defineField({name: 'image', title: 'Bild', type: 'imageWithAlt', validation: (rule) => rule.required()}),
     mobileField,
@@ -155,15 +155,9 @@ const canvasVideo = defineType({
   name: 'canvasVideo',
   title: 'Video',
   type: 'object',
+  fieldsets: [layoutFieldset],
   fields: [
-    defineField({
-      name: 'video',
-      title: 'Video',
-      type: 'file',
-      description: 'Kurzes MP4 (H.264) ohne Ton, möglichst unter 5 MB. Läuft stumm in Endlosschleife.',
-      options: {accept: 'video/mp4'},
-      validation: (rule) => rule.required(),
-    }),
+    videoField('video', 'Kurz halten.', true),
     defineField({
       name: 'poster',
       title: 'Vorschaubild',
@@ -194,16 +188,21 @@ const canvasText = defineType({
   name: 'canvasText',
   title: 'Text',
   type: 'object',
+  fieldsets: [layoutFieldset],
   fields: [
     defineField({
       name: 'body',
       title: 'Text',
       type: 'array',
-      description: 'Format je Absatz wählen: H1–H4 für Überschriften, Einleitung, Normal oder Klein.',
+      description:
+        'Format je Absatz wählen: H2–H4 für Überschriften, Einleitung, Normal oder Klein. (Die H1 ist der Titel im Kopfbereich bzw. im Intro.)',
       of: [
         defineArrayMember({
           type: 'block',
-          styles: Object.entries(CANVAS_TEXT_STYLES).map(([value, {title}]) => ({title, value})),
+          // H1 nicht anbieten: Die Seite hat ihre H1 schon im Intro oder Kopfbereich
+          styles: Object.entries(CANVAS_TEXT_STYLES)
+            .filter(([value]) => value !== 'h1')
+            .map(([value, {title}]) => ({title, value})),
           lists: [],
           marks: {
             decorators: [
@@ -268,6 +267,7 @@ const canvasSection = defineType({
   name: 'canvasSection',
   title: 'Freie Fläche',
   type: 'object',
+  fieldsets: [layoutFieldset],
   components: {input: CanvasInput},
   fields: [
     anchorLabelField,
@@ -289,6 +289,7 @@ const canvasSection = defineType({
     }),
     defineField({
       name: 'rowHeight',
+      fieldset: 'layout',
       title: 'Zeilenhöhe',
       type: 'string',
       description:
@@ -302,6 +303,7 @@ const canvasSection = defineType({
     }),
     defineField({
       name: 'mobileGap',
+      fieldset: 'layout',
       title: 'Abstand auf dem Handy',
       type: 'string',
       description: 'Abstand zwischen den Elementen, wenn sie auf dem Handy untereinander und nebeneinander stehen.',
@@ -318,6 +320,7 @@ const canvasSection = defineType({
     }),
     defineField({
       name: 'mobileOrder',
+      fieldset: 'layout',
       title: 'Reihenfolge auf dem Handy',
       type: 'string',
       description:
@@ -402,7 +405,7 @@ const richTextSection = defineType({
       ],
     }),
   ],
-  preview: {select: {title: 'heading'}, prepare: (value) => ({...value, subtitle: 'Fließtext'})},
+  preview: {select: {title: 'heading'}, prepare: (value) => ({...value, subtitle: 'Rechtstext'})},
 })
 
 // Seitenbau: Intro, Freie Fläche, Banner; dazu Galerie (Projekte) und Rechtstext (Impressum, Datenschutz)

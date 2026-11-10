@@ -1,14 +1,15 @@
 ---
 import {PortableText} from 'astro-portabletext'
 import PtLink from './PtLink.astro'
-import type {Settings} from '../lib/content'
+import {telHref, type Settings} from '../lib/content'
 import Img from './Img.astro'
 
 interface Props {
-  panel: NonNullable<Settings['contactPanel']>
+  settings: Settings
 }
 
-const {panel} = Astro.props
+const {settings} = Astro.props
+const panel = settings.contactPanel!
 ---
 
 <!--
@@ -33,7 +34,51 @@ const {panel} = Astro.props
         <section class:list={['border-t border-ink/15 px-6 py-6 lg:px-8', group.highlight && 'border-transparent bg-mist']}>
           {group.title && <h4>{group.title}</h4>}
           <div class="rich-text contact-panel__body mt-3">
-            <PortableText value={group.body ?? []} components={{mark: {link: PtLink}}} />
+            {group.source === 'phoneEmail' ? (
+              <p>
+                {/* Angaben aus „Kontakt“, leere fallen weg */}
+                {[
+                  settings.phone && <a href={telHref(settings.phone)}>{settings.phone}</a>,
+                  settings.fax && `Fax ${settings.fax}`,
+                  settings.email && <a href={`mailto:${settings.email}`}>{settings.email}</a>,
+                ]
+                  .filter(Boolean)
+                  .map((line, index) => (
+                    <>
+                      {index > 0 && <br />}
+                      {line}
+                    </>
+                  ))}
+              </p>
+            ) : group.source === 'address' ? (
+              <>
+                <p>
+                  {[settings.company, settings.street, settings.city]
+                    .filter(Boolean)
+                    .map((line, index) => (
+                      <>
+                        {index > 0 && <br />}
+                        {line}
+                      </>
+                    ))}
+                </p>
+                {settings.mapsUrl && (
+                  <p>
+                    <a href={settings.mapsUrl} target="_blank" rel="noopener noreferrer">
+                      Wegbeschreibung →
+                    </a>
+                  </p>
+                )}
+              </>
+            ) : group.source === 'social' ? (
+              settings.socialUrl && (
+                <p>
+                  <a href={settings.socialUrl}>{settings.socialLabel || settings.socialUrl}</a>
+                </p>
+              )
+            ) : (
+              <PortableText value={group.body ?? []} components={{mark: {link: PtLink}}} />
+            )}
           </div>
         </section>
       ))

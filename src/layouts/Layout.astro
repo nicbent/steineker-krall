@@ -62,7 +62,7 @@ const ogImage = shareImage?.kind === 'sanity' ? `${shareImage.url}?w=1200&h=630&
       <slot />
     </main>
     <Footer settings={settings} />
-    {settings.contactPanel && <ContactPanel panel={settings.contactPanel} />}
+    {settings.contactPanel && <ContactPanel settings={settings} />}
     <CookieConsent consent={consent} />
 
     <script>

@@ -1,6 +1,9 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 import {HERO_OVERLAYS} from '../../lib/heroOverlay'
 import {sectionTypes} from './sections'
+import {videoField} from './shared'
+
+const hiddenWithoutHero = ({parent}: {parent?: {size?: string}}) => parent?.size === 'none'
 
 export const page = defineType({
   name: 'page',
@@ -12,7 +15,8 @@ export const page = defineType({
       name: 'slug',
       title: 'URL-Pfad',
       type: 'slug',
-      description: 'Die Seite mit dem Pfad "home" ist die Startseite.',
+      description:
+        'Die Adresse der Seite, z. B. „projekte“ für /projekte. Achtung: Nach einer Änderung auch die Links im Menü und auf anderen Seiten anpassen. Die Startseite hat den Pfad „home“ – nicht ändern.',
       options: {source: 'title'},
       validation: (rule) => rule.required(),
     }),
@@ -46,36 +50,30 @@ export const page = defineType({
           },
           initialValue: 'half',
         }),
-        defineField({name: 'image', title: 'Bild', type: 'imageWithAlt', hidden: ({parent}) => parent?.size === 'none'}),
         defineField({
-          name: 'video',
-          title: 'Video',
-          type: 'file',
-          description: 'Optional, MP4 ohne Ton. Läuft stumm in Endlosschleife statt des Bildes; das Bild dient als Vorschaubild.',
-          options: {accept: 'video/mp4'},
-          hidden: ({parent}) => parent?.size === 'none',
+          name: 'image',
+          title: 'Bild',
+          type: 'imageWithAlt',
+          description: 'Bei einem Video das Vorschaubild, bis das Video geladen ist.',
+          hidden: hiddenWithoutHero,
+          // Ohne Bild und Video wird der Kopfbereich nicht angezeigt
+          validation: (rule) =>
+            rule
+              .custom((value, context) => {
+                const hero = context.parent as {size?: string; video?: unknown} | undefined
+                if (hero?.size === 'none' || value || hero?.video) return true
+                return 'Ohne Bild wird der Kopfbereich nicht angezeigt. Bild wählen oder Höhe auf „Kein Kopfbild“ stellen.'
+              })
+              .warning(),
         }),
-        defineField({
-          name: 'overlay',
-          title: 'Abdunklung',
-          type: 'string',
-          description: 'Dunkelt das Bild ab, damit weißer Text, Logo und Menü gut lesbar sind. Am stärksten unten, wo der Titel steht.',
-          options: {
-            list: Object.entries(HERO_OVERLAYS).map(([value, {title}]) => ({title, value})),
-            layout: 'radio',
-            direction: 'horizontal',
-          },
-          initialValue: 'medium',
-          hidden: ({parent}) => parent?.size === 'none',
-        }),
-        defineField({name: 'eyebrow', title: 'Dachzeile', type: 'string', hidden: ({parent}) => parent?.size === 'none'}),
+        {...videoField('video', 'Optional, läuft statt des Bildes.'), hidden: hiddenWithoutHero},
         defineField({
           name: 'title',
           title: 'Titel',
           type: 'text',
           rows: 2,
-          description: 'Steht groß im Bild (unten links oder mittig). Hat die Seite kein Intro, ist er die H1 der Seite.',
-          hidden: ({parent}) => parent?.size === 'none',
+          description: 'Steht groß im Bild. Hat die Seite kein Intro, ist er die H1 der Seite.',
+          hidden: hiddenWithoutHero,
         }),
         defineField({
           name: 'lead',
@@ -83,14 +81,14 @@ export const page = defineType({
           type: 'text',
           rows: 3,
           description: 'Optional, steht unter dem Titel.',
-          hidden: ({parent}) => parent?.size === 'none',
+          hidden: hiddenWithoutHero,
         }),
         defineField({
           name: 'link',
           title: 'Link',
           type: 'link',
           description: 'Optional, steht unter dem Titel bzw. Text.',
-          hidden: ({parent}) => parent?.size === 'none',
+          hidden: hiddenWithoutHero,
         }),
         defineField({
           name: 'align',
@@ -105,7 +103,27 @@ export const page = defineType({
             direction: 'horizontal',
           },
           initialValue: 'bottom',
-          hidden: ({parent}) => parent?.size === 'none',
+          hidden: hiddenWithoutHero,
+        }),
+        defineField({
+          name: 'overlay',
+          title: 'Abdunklung',
+          type: 'string',
+          description: 'Dunkelt das Bild ab, damit weißer Text, Logo und Menü gut lesbar sind.',
+          options: {
+            list: Object.entries(HERO_OVERLAYS).map(([value, {title}]) => ({title, value})),
+            layout: 'radio',
+            direction: 'horizontal',
+          },
+          initialValue: 'medium',
+          hidden: hiddenWithoutHero,
+        }),
+        defineField({
+          name: 'eyebrow',
+          title: 'Dachzeile',
+          type: 'string',
+          description: 'Optional, kleine Zeile über dem Titel.',
+          hidden: hiddenWithoutHero,
         }),
       ],
     }),
@@ -114,10 +132,19 @@ export const page = defineType({
       title: 'Abschnitte',
       type: 'array',
       of: sectionTypes.filter((type) => type.name.endsWith('Section')).map((type) => defineArrayMember({type: type.name})),
+      // Mehrere Intros ergäben mehrere H1-Überschriften
+      validation: (rule) =>
+        rule
+          .custom((sections?: {_type: string}[]) =>
+            (sections ?? []).filter((section) => section._type === 'introSection').length > 1
+              ? 'Pro Seite nur ein Intro verwenden (es enthält die Hauptüberschrift der Seite).'
+              : true,
+          )
+          .warning(),
     }),
   ],
   preview: {
-    select: {title: 'title', slug: 'slug.current'},
-    prepare: ({title, slug}) => ({title, subtitle: slug === 'home' ? '/' : `/${slug}`}),
+    select: {title: 'title', slug: 'slug.current', media: 'hero.image'},
+    prepare: ({title, slug, media}) => ({title, subtitle: slug === 'home' ? '/' : `/${slug}`, media}),
   },
 })

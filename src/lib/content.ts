@@ -35,7 +35,7 @@ export interface Settings {
   smoothScroll?: string
   contactPanel?: {
     title?: string
-    groups?: {_key: string; title?: string; body?: any[]; highlight?: boolean}[]
+    groups?: {_key: string; title?: string; source?: 'text' | 'phoneEmail' | 'address' | 'social'; body?: any[]; highlight?: boolean}[]
     image?: SiteImage
   }
 }
@@ -71,6 +71,9 @@ export interface Page {
   }
   sections?: Section[]
 }
+
+// Telefonnummer als Link: „+49 (0)40 540 89 89“ → „tel:+49405408989“
+export const telHref = (phone: string) => `tel:${phone.replace(/\(0\)|[^\d+]/g, '')}`
 
 const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID
 const dataset = import.meta.env.PUBLIC_SANITY_DATASET || 'production'

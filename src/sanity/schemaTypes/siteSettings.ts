@@ -2,6 +2,14 @@ import {defineArrayMember, defineField, defineType} from 'sanity'
 import {SMOOTH_SCROLL_LEVELS} from '../../lib/smoothScroll'
 import {linkAnnotation} from './shared'
 
+// Inhalt einer Gruppe im Kontakt-Panel: eigener Text oder Angaben aus den Einstellungen
+const CONTACT_SOURCES = {
+  text: 'Eigener Text',
+  phoneEmail: 'Telefon, Fax und E-Mail (aus „Kontakt“)',
+  address: 'Firma, Adresse und Wegbeschreibung (aus „Kontakt“)',
+  social: 'Social-Media-Link (aus „Footer“)',
+}
+
 export const siteSettings = defineType({
   name: 'siteSettings',
   title: 'Website-Einstellungen',
@@ -11,6 +19,7 @@ export const siteSettings = defineType({
     {name: 'contact', title: 'Kontakt'},
     {name: 'footer', title: 'Footer'},
     {name: 'contactPanel', title: 'Kontakt-Panel'},
+    {name: 'technical', title: 'Technik'},
   ],
   fields: [
     defineField({name: 'title', title: 'Website-Titel', type: 'string', group: 'general', validation: (rule) => rule.required()}),
@@ -27,7 +36,7 @@ export const siteSettings = defineType({
         direction: 'horizontal',
       },
       initialValue: 'subtle',
-      group: 'general',
+      group: 'technical',
     }),
     defineField({
       name: 'navigation',
@@ -36,16 +45,23 @@ export const siteSettings = defineType({
       of: [defineArrayMember({type: 'navItem'})],
       group: 'general',
     }),
-    defineField({name: 'company', title: 'Firma', type: 'string', group: 'contact'}),
-    defineField({name: 'street', title: 'Straße und Hausnummer', type: 'string', group: 'contact'}),
-    defineField({name: 'city', title: 'PLZ und Ort', type: 'string', group: 'contact'}),
-    defineField({name: 'phone', title: 'Telefon', type: 'string', group: 'contact'}),
-    defineField({name: 'fax', title: 'Telefax', type: 'string', group: 'contact'}),
-    defineField({name: 'email', title: 'E-Mail', type: 'string', group: 'contact'}),
-    defineField({name: 'mapsUrl', title: 'Link zur Wegbeschreibung', type: 'url', group: 'contact'}),
-    defineField({name: 'socialText', title: 'Social-Media-Hinweis', type: 'string', group: 'footer'}),
-    defineField({name: 'socialLabel', title: 'Social-Media-Linktext', type: 'string', group: 'footer'}),
-    defineField({name: 'socialUrl', title: 'Social-Media-Link', type: 'string', group: 'footer'}),
+    // Kontaktdaten an einer Stelle: Footer und Kontakt-Panel lesen sie von hier
+    defineField({name: 'company', title: 'Firma', type: 'string', description: 'Erscheint im Kontakt-Panel über der Adresse.', group: 'contact'}),
+    defineField({name: 'street', title: 'Straße und Hausnummer', type: 'string', description: 'Footer und Kontakt-Panel.', group: 'contact'}),
+    defineField({name: 'city', title: 'PLZ und Ort', type: 'string', description: 'Footer und Kontakt-Panel.', group: 'contact'}),
+    defineField({name: 'phone', title: 'Telefon', type: 'string', description: 'Footer und Kontakt-Panel, z. B. +49 (0)40 540 89 89.', group: 'contact'}),
+    defineField({name: 'fax', title: 'Telefax', type: 'string', description: 'Kontakt-Panel. Leer lassen, wenn es kein Fax mehr gibt.', group: 'contact'}),
+    defineField({name: 'email', title: 'E-Mail', type: 'string', description: 'Footer und Kontakt-Panel.', group: 'contact'}),
+    defineField({
+      name: 'mapsUrl',
+      title: 'Link zur Wegbeschreibung',
+      type: 'url',
+      description: 'Kontakt-Panel, unter der Adresse (z. B. ein Google-Maps-Link).',
+      group: 'contact',
+    }),
+    defineField({name: 'socialText', title: 'Social-Media-Hinweis', type: 'string', description: 'Satz im Footer vor dem Link.', group: 'footer'}),
+    defineField({name: 'socialLabel', title: 'Social-Media-Linktext', type: 'string', description: 'Footer und Kontakt-Panel, z. B. Instagram.', group: 'footer'}),
+    defineField({name: 'socialUrl', title: 'Social-Media-Link', type: 'url', description: 'Footer und Kontakt-Panel, vollständige Adresse mit https://.', group: 'footer'}),
     defineField({
       name: 'legalLinks',
       title: 'Rechtliche Links',
@@ -80,10 +96,22 @@ export const siteSettings = defineType({
               fields: [
                 defineField({name: 'title', title: 'Überschrift', type: 'string'}),
                 defineField({
-                  name: 'body',
+                  name: 'source',
                   title: 'Inhalt',
+                  type: 'string',
+                  description: 'Telefon, Adresse und Social Media kommen aus den Reitern „Kontakt“ und „Footer“ und müssen nur dort gepflegt werden.',
+                  options: {
+                    list: Object.entries(CONTACT_SOURCES).map(([value, title]) => ({title, value})),
+                    layout: 'radio',
+                  },
+                  initialValue: 'text',
+                }),
+                defineField({
+                  name: 'body',
+                  title: 'Text',
                   type: 'array',
-                  description: 'Links für Telefon als "tel:+494054089 89", für E-Mail als "mailto:adresse@…" anlegen.',
+                  description: 'Links für Telefon als "tel:+49405408989", für E-Mail als "mailto:adresse@…" anlegen.',
+                  hidden: ({parent}) => Boolean(parent?.source && parent.source !== 'text'),
                   of: [
                     defineArrayMember({
                       type: 'block',
@@ -101,7 +129,15 @@ export const siteSettings = defineType({
                   initialValue: false,
                 }),
               ],
-              preview: {select: {title: 'title', highlight: 'highlight'}, prepare: ({title, highlight}) => ({title, subtitle: highlight ? 'hervorgehoben' : undefined})},
+              preview: {
+                select: {title: 'title', highlight: 'highlight', source: 'source'},
+                prepare: ({title, highlight, source}) => ({
+                  title,
+                  subtitle: [source && source !== 'text' && CONTACT_SOURCES[source as keyof typeof CONTACT_SOURCES], highlight && 'hervorgehoben']
+                    .filter(Boolean)
+                    .join(' · ') || undefined,
+                }),
+              },
             }),
           ],
         }),
