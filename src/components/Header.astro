@@ -55,8 +55,8 @@ const links = settings.navigation ?? []
       aria-label="Menü öffnen"
       data-menu-toggle
     >
-      <span class="h-px w-8 bg-current transition-transform"></span>
-      <span class="h-px w-8 bg-current transition-transform"></span>
+      <span class="h-0.5 w-8 bg-current transition-transform"></span>
+      <span class="h-0.5 w-8 bg-current transition-transform"></span>
     </button>
   </div>
 
@@ -237,9 +237,9 @@ const links = settings.navigation ?? []
     color: var(--color-ink);
   }
   .menu-open [data-menu-toggle] span:first-child {
-    transform: translateY(4.5px) rotate(45deg);
+    transform: translateY(5px) rotate(45deg);
   }
   .menu-open [data-menu-toggle] span:last-child {
-    transform: translateY(-4.5px) rotate(-45deg);
+    transform: translateY(-5px) rotate(-45deg);
   }
 </style>
