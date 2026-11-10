@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css'
+// Gleiche Datei wie im CSS (gleicher Hash), hier nur zum Vorladen
+import fontUrl from '@fontsource-variable/nunito-sans/files/nunito-sans-latin-wght-normal.woff2?url'
 import ContactPanel from '../components/ContactPanel.astro'
 import CookieConsent from '../components/CookieConsent.astro'
 import Footer from '../components/Footer.astro'
@@ -31,6 +33,8 @@ const fullTitle = title ? `${title} – ${settings.title}` : settings.title
     <meta property="og:title" content={fullTitle} />
     <meta property="og:type" content="website" />
     <link rel="icon" type="image/svg+xml" href="/sk_logo_black.svg" />
+    <!-- Schrift sofort mitladen statt erst nach dem CSS: verhindert, dass die Seite kurz in Systemschrift erscheint -->
+    <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin />
     <!-- Vor dem ersten Rendern setzen, damit einzublendende Elemente nicht kurz aufblitzen -->
     <script is:inline>document.documentElement.classList.add('js')</script>
   </head>
