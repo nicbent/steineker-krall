@@ -14,6 +14,9 @@ export default defineConfig({
   // Die Dev-Toolbar lädt ihre Module erst beim ersten Seitenaufruf nach; Vite bündelt dann neu und ein offener
   // Studio-Tab stürzt ab (siehe optimizeDeps unten). Sie wird hier nicht gebraucht.
   devToolbar: {enabled: false},
+  // CSS direkt in die Seite statt als eigene Datei (gezippt ~11 KB): Firefox führt Skripte teils aus, bevor ein
+  // externes Stylesheet geladen ist, und zeichnet die Seite dann kurz ungestylt (vor allem beim harten Neuladen)
+  build: {inlineStylesheets: 'always'},
   integrations: [
     react(),
     // Ohne Projekt-ID gibt es kein Studio; das Frontend nutzt dann seed/content.json
