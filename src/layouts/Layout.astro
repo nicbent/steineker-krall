@@ -6,7 +6,7 @@ import ContactPanel from '../components/ContactPanel.astro'
 import CookieConsent from '../components/CookieConsent.astro'
 import Footer from '../components/Footer.astro'
 import Header from '../components/Header.astro'
-import {getContent, type Settings} from '../lib/content'
+import {getContent, type Settings, type SiteImage} from '../lib/content'
 import {smoothScrollLerp} from '../lib/smoothScroll'
 
 interface Props {
@@ -15,12 +15,17 @@ interface Props {
   description?: string
   headerTone: 'light' | 'dark'
   anchors?: {id: string; label: string}[]
+  /** Vorschaubild beim Teilen (Kopfbild der Seite); sonst das der Startseite */
+  image?: SiteImage
 }
 
-const {settings, title, description = settings.description, headerTone, anchors} = Astro.props
-const {consent} = await getContent()
+const {settings, title, description = settings.description, headerTone, anchors, image} = Astro.props
+const {consent, pages} = await getContent()
 const lerp = smoothScrollLerp(settings.smoothScroll)
 const fullTitle = title ? `${title} – ${settings.title}` : settings.title
+// Vorschaubild für WhatsApp, LinkedIn & Co.: 1200 × 630, aus dem Sanity-CDN zugeschnitten (absolute Adresse)
+const shareImage = image ?? pages.find((page) => page.slug === 'home')?.hero?.image
+const ogImage = shareImage?.kind === 'sanity' ? `${shareImage.url}?w=1200&h=630&fit=crop&auto=format&q=80` : undefined
 ---
 
 <!doctype html>
@@ -32,7 +37,17 @@ const fullTitle = title ? `${title} – ${settings.title}` : settings.title
     {description && <meta name="description" content={description} />}
     <meta property="og:title" content={fullTitle} />
     <meta property="og:type" content="website" />
-    <link rel="icon" type="image/svg+xml" href="/sk_logo_black.svg" />
+    <meta property="og:site_name" content={settings.title} />
+    <meta property="og:locale" content="de_DE" />
+    {description && <meta property="og:description" content={description} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && <meta property="og:image:width" content="1200" />}
+    {ogImage && <meta property="og:image:height" content="630" />}
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <!-- favicon.ico für ältere Browser und Suchmaschinen, SVG (passt sich dem dunklen Design an) für alle anderen -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- Schrift sofort mitladen statt erst nach dem CSS: verhindert, dass die Seite kurz in Systemschrift erscheint -->
     <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin />
     <!-- Vor dem ersten Rendern setzen, damit einzublendende Elemente nicht kurz aufblitzen -->

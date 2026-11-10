@@ -65,7 +65,7 @@ const isHome = page.slug === 'home'
 const hasIntro = sections.some((section) => section._type === 'introSection')
 ---
 
-<Layout settings={settings} title={isHome ? undefined : page.title} description={page.description} headerTone={headerTone} anchors={anchors}>
+<Layout settings={settings} title={isHome ? undefined : page.title} description={page.description} headerTone={headerTone} anchors={anchors} image={hasHero ? page.hero?.image : undefined}>
   {hasHero && <Hero hero={page.hero!} titleTag={hasIntro ? 'p' : 'h1'} />}
   {!hasIntro && !(hasHero && page.hero?.title) && <h1 class="sr-only">{isHome ? settings.title : page.title}</h1>}
   {
