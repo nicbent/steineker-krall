@@ -1,0 +1,18 @@
+---
+import IntroSection from '../components/sections/IntroSection.astro'
+import Layout from '../layouts/Layout.astro'
+import {getContent} from '../lib/content'
+
+// Fehlerseite für unbekannte Adressen; Cloudflare liefert sie mit Status 404 aus (wrangler.jsonc)
+const {settings} = await getContent()
+---
+
+<Layout settings={settings} title="Seite nicht gefunden" headerTone="light">
+  <div class="pt-24">
+    <IntroSection
+      heading="Seite nicht gefunden"
+      lead="Diese Seite gibt es nicht oder nicht mehr."
+      link={{href: '/', label: 'Zur Startseite'}}
+    />
+  </div>
+</Layout>

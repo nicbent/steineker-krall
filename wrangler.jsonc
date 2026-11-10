@@ -3,6 +3,8 @@
   "name": "steineker-krall",
   "compatibility_date": "2026-11-01",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    // Unbekannte Adressen: dist/404.html mit Status 404
+    "not_found_handling": "404-page"
   }
 }

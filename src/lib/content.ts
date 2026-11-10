@@ -75,6 +75,9 @@ export interface Page {
 const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID
 const dataset = import.meta.env.PUBLIC_SANITY_DATASET || 'production'
 
+// Alt-Texte aus der Mediathek (Feld „Alt text“ am Bild): gelten, wenn am Bild im Abschnitt keiner eingetragen ist
+let mediaAltTexts: Record<string, string> = {}
+
 // Asset-Referenzen enthalten Hash, Maße und Format, daher lassen sich die CDN-URLs ohne weitere Abfrage bilden
 function resolve(value: any): any {
   // Bilder ohne hochgeladene Datei (z. B. leere Einträge im Studio) fallen weg
@@ -99,7 +102,7 @@ function resolve(value: any): any {
       url: `https://cdn.sanity.io/images/${projectId}/${dataset}/${id}-${width}x${height}.${ext}`,
       width: Number(width),
       height: Number(height),
-      alt: value.alt ?? '',
+      alt: value.alt?.trim() || mediaAltTexts[value.asset._ref] || '',
       kind: 'sanity',
       position: value.hotspot && `${value.hotspot.x * 100}% ${value.hotspot.y * 100}%`,
     } satisfies SiteImage
@@ -124,10 +127,13 @@ async function load() {
   const data = await client.fetch(`{
     "settings": *[_id == "siteSettings"][0],
     "consent": *[_id == "consentSettings"][0],
-    "pages": *[_type == "page" && defined(slug.current)]
+    "pages": *[_type == "page" && defined(slug.current)],
+    "altTexts": *[_type == "sanity.imageAsset" && defined(altText) && altText != ""]{_id, altText}
   }`)
+  mediaAltTexts = Object.fromEntries(data.altTexts.map((asset: {_id: string; altText: string}) => [asset._id, asset.altText]))
   if (!data.settings) throw new Error(`Im Sanity-Dataset "${dataset}" fehlen die Website-Einstellungen (siteSettings).`)
-  return resolve(data)
+  const {altTexts, ...content} = data
+  return resolve(content)
 }
 
 export function getContent() {

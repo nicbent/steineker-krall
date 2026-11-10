@@ -10,7 +10,8 @@ export const imageWithAlt = defineType({
       name: 'alt',
       title: 'Alternativtext',
       type: 'string',
-      description: 'Beschreibt das Bild für Screenreader und Suchmaschinen. Bei rein dekorativen Bildern leer lassen.',
+      description:
+        'Beschreibt das Bild für Screenreader und Suchmaschinen. Leer lassen: Dann gilt der Alt-Text aus der Mediathek (Media → Bild → Alt text).',
     }),
   ],
 })
